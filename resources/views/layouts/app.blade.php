@@ -1,44 +1,132 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+        {{ $title }}
+    </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Pignose Calender -->
+    <link href="{{ asset('assets/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/chartist/css/chartist.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
+    <!-- Custom Stylesheet -->
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+</head>
 
-        <!-- FontAwesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<body>
 
-        <!-- Bootstrap CSS v5.2.0-beta1 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
         </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 
-    <!-- FontAwesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-    </body>
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="{{ route('dashboard') }}">
+                    <b class="logo-abbr"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"> </b>
+                    <span class="logo-compact"><img src="{{ asset('assets/images/logo-compact.png') }}" alt="logo-compact"></span>
+                    <span class="brand-title">
+                        <img src="{{ asset('assets/images/logo-text.png') }}" alt="logo-text">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <x-dashboard-header/>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <x-dashboard-sidebar/>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            {{ $content }}
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <x-dashboard-footer/>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{{ asset('assets/plugins/common/common.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/gleek.js') }}"></script>
+    <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
+
+    <!-- Chartjs -->
+    <script src="{{ asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+    <!-- Circle progress -->
+    <script src="{{ asset('assets/plugins/circle-progress/circle-progress.min.js') }}"></script>
+    <!-- Datamap -->
+    <script src="{{ asset('assets/plugins/d3v3/index.js') }}"></script>
+    <script src="{{ asset('assets/plugins/topojson/topojson.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datamaps/datamaps.world.min.js') }}"></script>
+    <!-- Morrisjs -->
+    <script src="{{ asset('assets/plugins/raphael/raphael.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/morris/morris.min.js') }}"></script>
+    <!-- Pignose Calender -->
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/pg-calendar/js/pignose.calendar.min.js') }}"></script>
+    <!-- ChartistJS -->
+    <script src="{{ asset('assets/plugins/chartist/js/chartist.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
+</body>
+
 </html>
+
