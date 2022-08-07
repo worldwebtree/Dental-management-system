@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DentCare - Dental Clinic Website Template</title>
+    <title>Huzaifa Dental Clinic</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->
@@ -18,16 +18,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+    <link href="{{ asset('assets/frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/frontend/lib/twentytwenty/twentytwenty.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -72,7 +72,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
         <a href="index.html" class="navbar-brand p-0">
-            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>DentCare</h1>
+            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Huzaifa Dental Clinic</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -94,7 +94,17 @@
                 <a href="#contactSection" class="nav-item nav-link">Contact</a>
             </div>
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
-            <a href="#appointmentSection" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
+            <a href="#appointmentSection" class="btn btn-primary py-2 px-4 ms-3"> Get Appointment</a>
+            <span class="ms-3">or</span>
+            @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="btn btn-primary py-2 px-4 ms-3">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                    @endauth
+                </div>
+            @endif
         </div>
     </nav>
     <!-- Navbar End -->
@@ -124,24 +134,13 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="{{ asset('assets/frontend/img/carousel-1.jpg') }}" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
-                            <a href="appointment.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
-                            <a href="appointment.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="#appointmentSection" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
+                            <a href="#contactSection" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -165,7 +164,7 @@
     <div class="container-fluid banner mb-5">
         <div class="container">
             <div class="row gx-0">
-                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.1s">
+                <div class="col-lg-6 wow zoomIn" data-wow-delay="0.1s">
                     <div class="bg-primary d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Opening Hours</h3>
                         <div class="d-flex justify-content-between text-white mb-3">
@@ -180,28 +179,12 @@
                             <h6 class="text-white mb-0">Sunday</h6>
                             <p class="mb-0"> 8:00am - 5:00pm</p>
                         </div>
-                        <a class="btn btn-light" href="">Appointment</a>
+                        <a class="btn btn-light" href="#appointmentSection">Appointment</a>
                     </div>
                 </div>
-                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">Search A Doctor</h3>
-                        <div class="date mb-3" id="date" data-target-input="nearest">
-                            <input type="text" class="form-control bg-light border-0 datetimepicker-input"
-                                placeholder="Appointment Date" data-target="#date" data-toggle="datetimepicker" style="height: 40px;">
-                        </div>
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
-                            <option selected>Select A Service</option>
-                            <option value="1">Service 1</option>
-                            <option value="2">Service 2</option>
-                            <option value="3">Service 3</option>
-                        </select>
-                        <a class="btn btn-light" href="">Search Doctor</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
+                <div class="col-lg-6 wow zoomIn" data-wow-delay="0.6s">
                     <div class="bg-secondary d-flex flex-column p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">Make Appointment</h3>
+                        <h3 class="text-white mb-3">Make Appointment On Call</h3>
                         <p class="text-white">Ipsum erat ipsum dolor clita rebum no rebum dolores labore, ipsum magna at eos et eos amet.</p>
                         <h2 class="text-white mb-0">+012 345 6789</h2>
                     </div>
@@ -233,11 +216,11 @@
                             <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Fair Prices</h5>
                         </div>
                     </div>
-                    <a href="appointment.html" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Make Appointment</a>
+                    <a href="#appointmentSection" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Make Appointment</a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/about.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{{ asset('assets/frontend/img/about.jpg') }}" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -316,8 +299,8 @@
             <div class="row g-5 mb-5">
                 <div class="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style="min-height: 400px;">
                     <div class="twentytwenty-container position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/before.jpg" style="object-fit: cover;">
-                        <img class="position-absolute w-100 h-100" src="img/after.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ asset('assets/frontend/img/before.jpg') }}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ asset('assets/frontend/img/after.jpg') }}" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -328,7 +311,7 @@
                     <div class="row g-5">
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-1.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/frontend/img/service-1.jpg') }}" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
                                 <h5 class="m-0">Cosmetic Dentistry</h5>
@@ -336,7 +319,7 @@
                         </div>
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/frontend/img/service-2.jpg') }}" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
                                 <h5 class="m-0">Dental Implants</h5>
@@ -350,7 +333,7 @@
                     <div class="row g-5">
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.3s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-3.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/frontend/img/service-3.jpg') }}" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
                                 <h5 class="m-0">Dental Bridges</h5>
@@ -358,7 +341,7 @@
                         </div>
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-4.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('assets/frontend/img/service-4.jpg') }}" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
                                 <h5 class="m-0">Teeth Whitening</h5>
@@ -462,7 +445,7 @@
                     <div class="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
                         <div class="price-item pb-4">
                             <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-1.jpg" alt="">
+                                <img class="img-fluid rounded-top" src="{{ asset('assets/frontend/img/price-1.jpg') }}" alt="">
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
                                     <h2 class="text-primary m-0">$35</h2>
                                 </div>
@@ -478,7 +461,7 @@
                         </div>
                         <div class="price-item pb-4">
                             <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-2.jpg" alt="">
+                                <img class="img-fluid rounded-top" src="{{ asset('assets/frontend/img/price-2.jpg') }}" alt="">
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
                                     <h2 class="text-primary m-0">$49</h2>
                                 </div>
@@ -494,7 +477,7 @@
                         </div>
                         <div class="price-item pb-4">
                             <div class="position-relative">
-                                <img class="img-fluid rounded-top" src="img/price-3.jpg" alt="">
+                                <img class="img-fluid rounded-top" src="{{ asset('assets/frontend/img/price-3.jpg') }}" alt="">
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded pt-2 px-3 position-absolute top-100 start-50 translate-middle" style="z-index: 2;">
                                     <h2 class="text-primary m-0">$99</h2>
                                 </div>
@@ -523,13 +506,13 @@
                 <div class="col-lg-7">
                     <div class="owl-carousel testimonial-carousel rounded p-5 wow zoomIn" data-wow-delay="0.6s">
                         <div class="testimonial-item text-center text-white">
-                            <img class="img-fluid mx-auto rounded mb-4" src="img/testimonial-1.jpg" alt="">
+                            <img class="img-fluid mx-auto rounded mb-4" src="{{ asset('assets/frontend/img/testimonial-1.jpg') }}" alt="">
                             <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum. At lorem lorem magna ut et, nonumy labore diam erat. Erat dolor rebum sit ipsum.</p>
                             <hr class="mx-auto w-25">
                             <h4 class="text-white mb-0">Client Name</h4>
                         </div>
                         <div class="testimonial-item text-center text-white">
-                            <img class="img-fluid mx-auto rounded mb-4" src="img/testimonial-2.jpg" alt="">
+                            <img class="img-fluid mx-auto rounded mb-4" src="{{ asset('assets/frontend/img/testimonial-2.jpg') }}" alt="">
                             <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum. At lorem lorem magna ut et, nonumy labore diam erat. Erat dolor rebum sit ipsum.</p>
                             <hr class="mx-auto w-25">
                             <h4 class="text-white mb-0">Client Name</h4>
@@ -556,7 +539,7 @@
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-1.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-1.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -573,7 +556,7 @@
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-2.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-2.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -590,7 +573,7 @@
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-3.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-3.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -607,7 +590,7 @@
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-4.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-4.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -624,7 +607,7 @@
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
                     <div class="team-item">
                         <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="img/team-5.jpg" alt="">
+                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-5.jpg') }}" alt="">
                             <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
                                 <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
@@ -724,18 +707,18 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="lib/twentytwenty/jquery.event.move.js"></script>
-    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
+    <script src="{{ asset('assets/frontend/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/twentytwenty/jquery.event.move.js') }}"></script>
+    <script src="{{ asset('assets/frontend/lib/twentytwenty/jquery.twentytwenty.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 </body>
 
 </html>
