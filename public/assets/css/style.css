@@ -13823,6 +13823,10 @@ table.dataTable thead .sorting::after {
   .rtl .float-xxl-none {
     float: none !important; } }
 
+.card-header > h2{
+    color: #7571f9;
+}
+
 html[dir="rtl"] [direction="rtl"][data-theme-version="dark"] .border, html[dir="rtl"] [direction="rtl"][data-theme-version="dark"] .border-left, html[dir="rtl"] [direction="rtl"][data-theme-version="dark"] .border-right {
   border-color: rgba(120, 130, 140, 0.13) !important; }
 

@@ -10,17 +10,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{ route('dashboard') }}">
-                        <i class="fas fa-edit"></i><span class="nav-text pl-3">Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="{{ route('dashboard') }}">
-                        <i class="fas fa-user-md"></i><span class="nav-text pl-3">Dentists</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="{{ route('dashboard') }}">
+                    <a class="" href="{{ route('patient') }}">
                         <i class="fas fa-users"></i><span class="nav-text pl-3">Patients</span>
                     </a>
                 </li>

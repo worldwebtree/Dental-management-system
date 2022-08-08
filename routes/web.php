@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +23,22 @@ Route::get('/dashboard', function () {
     return view('Dashboard.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+
+Route::controller(ProfileController::class)
+->middleware(['auth'])
+->group(function () {
+
+    Route::get('/profile', 'index')
+    ->name('profile');
+
+});
+
+Route::controller(PatientController::class)
+->middleware(['auth'])
+->group(function () {
+
+    Route::get('/patient', 'index')
+    ->name('patient');
+
+});
 require __DIR__.'/auth.php';

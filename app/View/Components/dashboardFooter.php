@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class dashboard-footer extends Component
+class dashboardFooter extends Component
 {
     /**
      * Create a new component instance.
