@@ -1,1 +1,1 @@
-<i class="fas fa-tooth text-white"></i>   
+<i class="fas fa-tooth fa-5x"></i>

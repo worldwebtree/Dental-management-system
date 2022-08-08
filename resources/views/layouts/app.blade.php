@@ -8,14 +8,22 @@
     <title>
         {{ $title }}
     </title>
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
     <!-- Pignose Calender -->
     <link href="{{ asset('assets/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
+
     <!-- Chartist -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/chartist/css/chartist.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
     <!-- Custom Stylesheet -->
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+    <!-- Css -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -48,10 +56,19 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="{{ route('dashboard') }}">
-                    <b class="logo-abbr"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"> </b>
-                    <span class="logo-compact"><img src="{{ asset('assets/images/logo-compact.png') }}" alt="logo-compact"></span>
-                    <span class="brand-title">
-                        <img src="{{ asset('assets/images/logo-text.png') }}" alt="logo-text">
+                    <h1 class="logo-abbr text-white bold text-uppercase text-xl">
+                        @if (auth()->user()->role == "Dentist")
+                            D
+                            @elseif (auth()->user()->role == "Patient")
+                            P
+                        @endif
+                    </h1>
+                    <span class="brand-title text-white bold text-uppercase">
+                        @if (auth()->user()->role == "Dentist")
+                                Dentist
+                            @elseif (auth()->user()->role == "Patient")
+                                Patient
+                        @endif
                     </span>
                 </a>
             </div>
@@ -110,22 +127,28 @@
 
     <!-- Chartjs -->
     <script src="{{ asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+
     <!-- Circle progress -->
     <script src="{{ asset('assets/plugins/circle-progress/circle-progress.min.js') }}"></script>
+
     <!-- Datamap -->
     <script src="{{ asset('assets/plugins/d3v3/index.js') }}"></script>
     <script src="{{ asset('assets/plugins/topojson/topojson.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datamaps/datamaps.world.min.js') }}"></script>
+
     <!-- Morrisjs -->
     <script src="{{ asset('assets/plugins/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/morris/morris.min.js') }}"></script>
+
     <!-- Pignose Calender -->
     <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/pg-calendar/js/pignose.calendar.min.js') }}"></script>
+
     <!-- ChartistJS -->
     <script src="{{ asset('assets/plugins/chartist/js/chartist.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
 </body>
 
 </html>

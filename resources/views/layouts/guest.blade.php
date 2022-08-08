@@ -13,7 +13,7 @@
 
         <style>
             .antialiased {
-                background-color: #06A3DA;
+                background: linear-gradient(#06a2da, #06bada82);
             }
         </style>
         <!-- Scripts -->

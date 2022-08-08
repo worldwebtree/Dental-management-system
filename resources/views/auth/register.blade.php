@@ -3,6 +3,9 @@
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <span class="text-xl">
+                    Huzaifa Dental Clinic
+                </span>
             </a>
         </x-slot>
 
@@ -50,10 +53,10 @@
                     {{ __('Already registered?') }}
                 </a>
 
+                <a href="{{ route('login') }}" class="outline-0 ml-3 inline-flex items-center px-4 py-2 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Login</a>
                 <x-button class="ml-4">
                     {{ __('Register') }}
                 </x-button>
-                <a href="{{ route('login') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Login</a>
             </div>
         </form>
     </x-auth-card>

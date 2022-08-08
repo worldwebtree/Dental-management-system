@@ -2,7 +2,10 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-white" />
+                <x-application-logo class="w-20 h-20 fill-current text-white"/>
+                <span class="text-xl">
+                    Huzaifa Dental Clinic
+                </span>
             </a>
         </x-slot>
         <!-- Session Status -->
@@ -46,11 +49,11 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-button class="ml-3 authticationBtn">
                     {{ __('Log in') }}
                 </x-button>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-blue-400 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Register</a>
+                    <a href="{{ route('register') }}" class="outline-0 ml-3 inline-flex items-center px-4 py-2 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Register</a>
                 @endif
             </div>
         </form>

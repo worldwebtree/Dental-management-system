@@ -28,6 +28,7 @@ return new class extends Migration
             $table->tinyInteger('age');
             $table->date('birthDate');
             $table->string('specialization', 255);
+            $table->string('avatar')->nullable();
             $table->timestamps();
         });
     }
