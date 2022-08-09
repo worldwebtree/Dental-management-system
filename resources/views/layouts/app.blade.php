@@ -26,6 +26,18 @@
     <!-- Css -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        button,
+        [type='button'],
+        [type='reset'],
+        [type='submit'] {
+        -webkit-appearance: button; /* 1 */
+        background-color: #7571f9; /* 2 */
+        background-image: none; /* 2 */
+        }
+    </style>
 </head>
 
 <body>
