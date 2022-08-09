@@ -10,12 +10,12 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{ route('patient') }}">
+                    <a class="" href="{{ route('patients') }}">
                         <i class="fas fa-users"></i><span class="nav-text pl-3">Patients</span>
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{ route('dashboard') }}">
+                    <a class="" href="{{ route('appointments') }}">
                         <i class="fas fa-calendar-check"></i><span class="nav-text pl-3">Appointments</span>
                     </a>
                 </li>
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{ route('dashboard') }}">
+                    <a class="" href="{{ route('contacts') }}">
                         <i class="fas fa-address-book"></i><span class="nav-text pl-3">Contacted Patients</span>
                     </a>
                 </li>

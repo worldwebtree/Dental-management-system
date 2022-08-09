@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="title">
-        Patients
+        Dentists
     </x-slot>
 
     <x-slot name="content">
@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-header text-uppercase">
                             <h2>
-                                patients
+                                dentists
                             </h2>
                         </div>
                         <div class="card-body">
@@ -26,27 +26,32 @@
                                         <th>country</th>
                                         <th>city</th>
                                         <th>age</th>
-                                        <th>gender</th>
                                         <th>dob</th>
-                                        <th>occupation</th>
+                                        <th>specialization</th>
+                                        <th>action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($patients as $patient)
-                                            <tr>
-                                                <td scope="row">{{ $patient->patient['avatar'] }}</td>
-                                                <td>{{ $patient['name'] }}</td>
-                                                <td>{{ $patient['email'] }}</td>
-                                                <td>{{ $patient->patient['phone'] }}</td>
-                                                <td>{{ $patient->patient['address'] }}</td>
-                                                <td>{{ $patient->patient['country'] }}</td>
-                                                <td>{{ $patient->patient['city'] }}</td>
-                                                <td>{{ $patient->patient['age'] }}</td>
-                                                <td>{{ $patient['gender'] }}</td>
-                                                <td>{{ $patient->patient['birthDate'] }}</td>
-                                                <td>{{ $patient->patient['occupation'] }}</td>
-                                            </tr>
-                                        @endforeach
+                                        <tr>
+                                            <td scope="row"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>|
+                                                <a href="#">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                             </table>
                         </div>

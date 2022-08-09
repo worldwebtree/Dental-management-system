@@ -3,26 +3,23 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Patient;
-use App\Models\User;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class PatientController extends Controller
+class ContactPatientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Support\Facades\View
      */
-    public function index(User $user)
+    public function index(Contact $contactedPatient)
     {
-        $patients = $user
-        ->with('patient')
-        ->where('role', 'Patient')
+        $contacts = $contactedPatient
         ->get();
-        
-        return View::make('Dashboard.patient', compact('patients'));
+
+        return View::make('Dashboard.contactedPatient', compact('contacts'));
     }
 
     /**
@@ -86,8 +83,15 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contactedPatient ,$id)
     {
-        //
+        $contact = $contactedPatient
+        ->findOrFail($id);
+
+        $contact->delete();
+
+        return redirect()
+        ->route('contacts')
+        ->with('deleted', 'The Contact info has been permanently deleted!');
     }
 }

@@ -3,26 +3,19 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Patient;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class PatientController extends Controller
+class DentistController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Support\Facades\View
      */
-    public function index(User $user)
+    public function index()
     {
-        $patients = $user
-        ->with('patient')
-        ->where('role', 'Patient')
-        ->get();
-        
-        return View::make('Dashboard.patient', compact('patients'));
+        return View::make('Dashboard.dentist');
     }
 
     /**

@@ -30,7 +30,6 @@
 
     <style>
         button,
-        [type='button'],
         [type='reset'],
         [type='submit'] {
         -webkit-appearance: button; /* 1 */

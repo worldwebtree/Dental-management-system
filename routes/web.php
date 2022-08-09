@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AppointmentController;
+use App\Http\Controllers\Dashboard\ContactPatientController;
+use App\Http\Controllers\Dashboard\DentistController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,21 +27,51 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::controller(ProfileController::class)
-->middleware(['auth'])
-->group(function () {
+Route::middleware(['auth'])->group(function () {
+    
+    Route::controller(ProfileController::class)
+    ->group(function () {
 
-    Route::get('/profile', 'index')
-    ->name('profile');
+        Route::get('/profile', 'index')
+        ->name('profile');
+
+    });
+
+    Route::controller(PatientController::class)
+    ->group(function () {
+
+        Route::get('/patient', 'index')
+        ->name('patients');
+
+    });
+
+    Route::controller(AppointmentController::class)
+    ->group(function () {
+
+        Route::get('/appointments', 'index')
+        ->name('appointments');
+
+    });
+
+    Route::controller(ContactPatientController::class)
+    ->group(function () {
+
+        Route::get('/contact', 'index')
+        ->name('contacts');
+
+        Route::get('/delete/{id}', 'destroy')
+        ->name('delete');
+
+    });
+
+    Route::controller(DentistController::class)
+    ->group(function () {
+
+        Route::get('/dentist', 'index')
+        ->name('dentists');
+
+    });
 
 });
 
-Route::controller(PatientController::class)
-->middleware(['auth'])
-->group(function () {
-
-    Route::get('/patient', 'index')
-    ->name('patient');
-
-});
 require __DIR__.'/auth.php';
