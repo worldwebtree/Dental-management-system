@@ -1,3 +1,6 @@
+@php
+    $user = auth()->user();
+@endphp
 <x-app-layout>
 
     <x-slot name="title">
@@ -15,31 +18,32 @@
                             </h2>
                         </div>
                         <div class="card-body">
-                            @if (auth()->user()->role == "Dentist")
+                            @if ($user->role == "Dentist")
 
-                                <form action="#" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
+                                <form action="{{ route('profile.store.dentist') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
 
-                                    <div class="flex justify-center items-center w-full">
-                                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                            <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                                                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG (MAX. 800x400px)</p>
-                                            </div>
-                                            <input id="dropzone-file" type="file" class="hidden">
-                                        </label>
+                                    <div class="mb-3">
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
+                                        <input
+                                         class="block w-full px-3 py-3 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        aria-describedby="file_input_help"
+                                        id="file_input"
+                                        type="file"
+                                        name="dentistAvatar"
+                                        accept="image/png, image/jpeg, image/jpg">
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or JPEG.</p>
                                     </div>
 
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputName" class="form-label">name</label>
-                                            <input type="text" name="name" class="form-control" id="inputName">
+                                            <input type="text" name="name" value="{{ $user->name }}" class="form-control" id="inputName">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputEmail" class="form-label">email</label>
-                                            <input type="email" disabled class="form-control" id="inputEmail">
+                                            <input type="email" disabled class="form-control" value="{{ $user->email }}" id="inputEmail">
                                         </div>
                                     </div>
 
@@ -47,77 +51,80 @@
                                         <div class="col-6">
                                             <label for="inputGender" class="form-label">gender</label>
                                             <select class="form-control" name="gender" id="inputGender">
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>other</option>
+                                                <option value="{{ $user->gender }}">{{ $user->gender }}</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="other">other</option>
                                             </select>
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputPhone" class="form-label">phone</label>
-                                            <input type="number" name="phone" class="form-control" id="inputPhone">
+                                            <input type="number" name="phone" value="{{ $user->dentist->phone }}" class="form-control" id="inputPhone">
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputAddress" class="form-label">address</label>
-                                        <input type="text" name="address" class="form-control" id="inputAddress">
+                                        <input type="text" name="address" class="form-control" value="{{ $user->dentist->address }}" id="inputAddress">
                                     </div>
 
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputCountry" class="form-label">country</label>
-                                            <input type="text" name="country" class="form-control" id="inputCountry">
+                                            <input type="text" name="country" class="form-control" value="{{ $user->dentist->country }}" id="inputCountry">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputCity" class="form-label">city</label>
-                                            <input type="text" name="city" class="form-control" id="inputCity">
+                                            <input type="text" name="city" class="form-control" value="{{ $user->dentist->city }}" id="inputCity">
                                         </div>
                                     </div>
 
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputAge" class="form-label">age</label>
-                                            <input type="number" name="age" class="form-control" id="inputAge">
+                                            <input type="number" name="age" class="form-control" min="25" max="100" value="{{ $user->dentist->age }}" id="inputAge">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputDob" class="form-label">date of birth</label>
-                                            <input type="date" name="dob" class="form-control" id="inputDob">
+                                            <input type="date" name="dob" class="form-control" value="{{ $user->dentist->birthDate }}" id="inputDob">
                                         </div>
                                     </div>
 
                                     <div class="col-6 mb-3">
                                         <label for="inputSpecialization" class="form-label">specialization</label>
                                         <select class="form-control" name="specialization" id="inputSpecialization">
-                                            <option>General Dentist</option>
-                                            <option>Pedodontist or Pediatric Dentist</option>
-                                            <option>Orthodontist</option>
-                                            <option>Periodontist or Gum Specialist</option>
-                                            <option>Endodontist or Root Canal Specialist</option>
-                                            <option>Oral Pathologist or Oral Surgeon</option>
-                                            <option>Prosthodontist</option>
+                                            <option value="{{ $user->dentist->specialization }}">{{ $user->dentist->specialization }}</option>
+                                            <option value="General Dentist">General Dentist</option>
+                                            <option value="Pedodontist or Pediatric Dentist">Pedodontist or Pediatric Dentist</option>
+                                            <option value="Orthodontist">Orthodontist</option>
+                                            <option value="Periodontist or Gum Specialist">Periodontist or Gum Specialist</option>
+                                            <option value="Endodontist or Root Canal Specialist">Endodontist or Root Canal Specialist</option>
+                                            <option value="Oral Pathologist or Oral Surgeon">Oral Pathologist or Oral Surgeon</option>
+                                            <option value="Prosthodontist">Prosthodontist</option>
                                         </select>
                                     </div>
 
                                     <button type="submit" class="btn btn-lg btn-primary float-right">Update</button>
                                 </form>
 
-                                @elseif (auth()->user()->role == "Patient")
+                                @elseif ($user->role == "Patient")
 
-                                <form action="#" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
+                                <form action="{{ route('profile.store.patient') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
 
-                                    <div class="flex justify-center items-center w-full">
-                                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                            <div class="flex flex-col justify-center items-center pt-5 pb-6">
-                                                <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG (MAX. 800x400px)</p>
-                                            </div>
-                                            <input id="dropzone-file" type="file" class="hidden">
-                                        </label>
+                                    <div class="mb-3">
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
+                                        <input
+                                         class="block w-full px-3 py-3 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        aria-describedby="file_input_help"
+                                        id="file_input"
+                                        type="file"
+                                        name="patientAvatar"
+                                        accept="image/png, image/jpeg, image/jpg">
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or JPEG.</p>
                                     </div>
 
                                     <div class="d-flex mb-3">

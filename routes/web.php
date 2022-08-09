@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AppointmentController;
 use App\Http\Controllers\Dashboard\ContactPatientController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DentistController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
@@ -22,18 +23,24 @@ Route::get('/', function () {
     return view('frontend');
 });
 
-Route::get('/dashboard', function () {
-    return view('Dashboard.dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
 Route::middleware(['auth'])->group(function () {
-    
+
+    Route::controller(DashboardController::class)->group(function (){
+        Route::get('/dashboard', 'index')
+        ->name('dashboard');
+    });
+
     Route::controller(ProfileController::class)
     ->group(function () {
 
         Route::get('/profile', 'index')
         ->name('profile');
+
+        Route::post('/profile_update_dentist', 'storeDentist')
+        ->name('profile.store.dentist');
+
+        Route::post('/profile_update_patient', 'storePatient')
+        ->name('profile.store.patient');
 
     });
 

@@ -11,6 +11,8 @@ class Dentist extends Model
 {
     use HasFactory;
 
+    protected $guarded;
+
     /**
      * The dentist belongsTo user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
