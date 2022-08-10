@@ -48,12 +48,32 @@
                                 name="password_confirmation" required />
             </div>
 
+            <!-- Select Role -->
+            <div class="mt-4">
+                <x-label for="user_role" :value="__('Role')" />
+
+                <select class="block mt-1 w-full rounded border-gray-300" name="user_role" id="user_role">
+                    <option>Dentist</option>
+                    <option>Patient</option>
+                </select>
+            </div>
+
+            <!-- Select gender -->
+            <div class="mt-4">
+                <x-label for="user_gender" :value="__('Gender')" />
+
+                <select class="block mt-1 w-full rounded border-gray-300" name="user_gender" id="user_gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <a href="{{ route('login') }}" class="outline-0 ml-3 inline-flex items-center px-4 py-2 bg-blue-400 hover:bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Login</a>
                 <x-button class="ml-4">
                     {{ __('Register') }}
                 </x-button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\Contact;
+use App\Models\Dentist;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,20 +21,44 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $patients = Patient::get()
-        ->count();
+        $user = Auth::user();
 
-        $dentists = Auth::user()->dentist;
+        if ($user->role == "Dentist") {
 
-        $appointments = Appointment::where('dentist_id', $dentists->id)
-        ->count();
+            $patients = Patient::count();
 
-        $contacts = Contact::get()
-        ->count();
+            $current_date = Carbon::now();
 
-        $current_date = Carbon::now();
+            $appointments = $user
+            ->appointments
+            ->where('user_id', $user->id)
+            ->count();
 
-        return View::make('Dashboard.dashboard', compact('patients', 'appointments', 'contacts', 'current_date'));
+            $contacts = $user
+            ->contact
+            ->count();
+
+            return View::make('Dashboard.dashboard',
+            compact('patients', 'current_date', 'appointments', 'contacts'));
+
+        } elseif($user->role == "Patient") {
+
+            $dentists = Dentist::count();
+
+            $appointments = $user
+            ->appointments
+            ->where('user_id', $user->id)
+            ->count();
+
+            $contacts = $user
+            ->contact
+            ->count();
+
+            $current_date = Carbon::now();
+
+            return View::make('Dashboard.dashboard',
+            compact('dentists', 'appointments', 'contacts', 'current_date'));
+        }
     }
 
     /**
@@ -60,12 +85,21 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Support\Facades\View
      */
-    public function show($id)
+    public function show()
     {
-        //
+
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Support\Facades\View
+     */
+    public function showPatients()
+    {
+
     }
 
     /**

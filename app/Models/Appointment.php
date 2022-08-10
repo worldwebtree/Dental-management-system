@@ -10,6 +10,15 @@ class Appointment extends Model
 {
     use HasFactory;
 
+            /**
+     * The appointments belongsTo a user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * The appointments belongsTo a patient
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

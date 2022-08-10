@@ -28,7 +28,7 @@ return new class extends Migration
             $table->enum('role', ['Dentist', 'Patient'])
             ->default('Patient');
 
-            $table->enum('gender', ['Male', 'Female', 'other']);
+            $table->enum('gender', ['Male', 'Female', 'Other']);
 
             $table->rememberToken();
             $table->timestamps();

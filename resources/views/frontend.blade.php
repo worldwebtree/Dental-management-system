@@ -94,8 +94,15 @@
                 <a href="#contactSection" class="nav-item nav-link">Contact</a>
             </div>
             <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
-            <a href="#appointmentSection" class="btn btn-primary py-2 px-4 ms-3"> Get Appointment</a>
-            <span class="ms-3">or</span>
+
+            @if (auth()->check() && auth()->user()->role == "Patient")
+                <a href="#appointmentSection" class="btn btn-primary py-2 px-4 ms-3"> Get Appointment</a>
+                <span class="ms-3">or</span>
+                @else
+                <a href="#appointmentSection" class="btn btn-primary py-2 px-4 ms-3"> Get Appointment</a>
+                <span class="ms-3">or</span>
+            @endif
+
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
