@@ -76,10 +76,23 @@
                     </div>
                 </li>
                 <li class="icons dropdown">
-                    <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                        <span class="activity active"></span>
-                        <img src="{{ asset('assets/images/user/1.png') }}" height="40" width="40" alt="">
-                    </div>
+                    @if (auth()->user()->role == "Dentist" && auth()->user()->dentist != null)
+                        <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <span class="activity active"></span>
+                            <img src="{{ asset('storage/profileAvatars/'.auth()->user()->dentist->avatar) }}" height="40" width="40" alt="">
+                        </div>
+
+                        @elseif (auth()->user()->role == "Patient" && auth()->user()->patient != null)
+                        <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <span class="activity active"></span>
+                            <img src="{{ asset('storage/profileAvatars/'.auth()->user()->patient->avatar) }}" height="40" width="40" alt="">
+                        </div>
+                        @else
+                        <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <span class="activity active"></span>
+                            <img src="{{ asset('assets/images/user/1.jpg') }}" height="40" width="40" alt="">
+                        </div>
+                    @endif
                     <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                         <div class="dropdown-content-body">
                             <ul>

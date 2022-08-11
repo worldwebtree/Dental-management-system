@@ -37,16 +37,16 @@ class ProfileController extends Controller
      */
     public function storeDentist(Request $request)
     {
-        $check = $request->validate([
-            'name' => ['string'],
-            'gender' => ['string'],
-            'phone' => ['integer'],
-            'address' => ['string'],
-            'country' => ['string'],
-            'city' => ['string'],
-            'age' => ['integer', 'min:25', 'max:100'],
-            'dob' => ['date'],
-            'specialization' => ['string'],
+        $request->validate([
+            'name' => ['required', 'string'],
+            'gender' => ['required', 'string'],
+            'phone' => ['required', 'numeric'],
+            'address' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'age' => ['required', 'integer', 'min:25', 'max:100'],
+            'dob' => ['required', 'date'],
+            'specialization' => ['required','string'],
         ]);
 
         if (empty($request->hasFile('dentistAvatar')) && $request['dentistAvatar'] == null) {
