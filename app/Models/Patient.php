@@ -30,4 +30,13 @@ class Patient extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+        /**
+     * The patient has a one to many relation with transaction
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transaction(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

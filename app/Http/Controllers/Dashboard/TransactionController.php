@@ -3,25 +3,26 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class PatientController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Support\Facades\View
      */
-    public function index(User $user)
+    public function index(Transaction $transaction)
     {
-        $patients = $user
+        $transactions = $transaction
         ->with('patient')
-        ->where('role', 'Patient')
         ->get();
 
-        return View::make('Dashboard.patient', compact('patients'));
+        // dd($transactions);
+
+        return View::make('Dashboard.Transaction', compact('transactions'));
     }
 
     /**
@@ -42,7 +43,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**

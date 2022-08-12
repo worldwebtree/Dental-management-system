@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="{{ route('dashboard') }}">
+                    <a class="" href="{{ route('transactions') }}">
                         <i class="fas fa-money-bill"></i><span class="nav-text pl-3">Transactions</span>
                     </a>
                 </li>

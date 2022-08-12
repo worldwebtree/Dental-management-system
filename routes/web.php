@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DentistController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,9 +51,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/patient', 'index')
         ->name('patients');
 
-        Route::post('/patient_store', 'store')
-        ->name('patients.store');
-
     });
 
     Route::controller(AppointmentController::class)
@@ -60,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/appointments', 'index')
         ->name('appointments');
+
+        Route::post('/appointment_store', 'store')
+        ->name('appointments.store');
 
     });
 
@@ -82,6 +83,13 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    Route::controller(TransactionController::class)
+    ->group(function () {
+
+        Route::get('/transaction', 'index')
+        ->name('transactions');
+
+    });
 });
 
 require __DIR__.'/auth.php';

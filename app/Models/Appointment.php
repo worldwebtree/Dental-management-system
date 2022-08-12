@@ -10,6 +10,8 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
             /**
      * The appointments belongsTo a user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
