@@ -28,7 +28,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Add</h5>
+                                            <h5 class="modal-title">Add Appointment Details</h5>
                                                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -119,15 +119,22 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-6 mb-3">
-                                                    <label for="inputDentistName" class="form-label">Dentists</label>
-                                                    <select class="form-control" name="dentist_id" id="inputDentistName">
-                                                        @foreach ($all_dentists as $credential)
-                                                            <option value="{{ $credential->id }}">
-                                                                {{ $credential->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="d-flex">
+                                                    <div class="col-6 mb-3">
+                                                        <label for="inputDentistName" class="form-label">Dentists</label>
+                                                        <select class="form-control" name="dentist_id" id="inputDentistName">
+                                                            @foreach ($all_dentists as $credential)
+                                                                <option value="{{ $credential->id }}">
+                                                                    {{ $credential->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-6 mb-3">
+                                                        <label for="inputAppointmentPayment" class="form-label">appointment payment</label>
+                                                        <input type="number" class="form-control" name="appointment_payment" id="inputAppointmentPayment">
+                                                    </div>
                                                 </div>
 
                                                 <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>
@@ -152,7 +159,13 @@
                                             <tr>
                                                 <td scope="row">{{ $appointment['patient-name'] }}</td>
                                                 <td>{{ $appointment['appointment-dateTime'] }}</td>
-                                                <td>{{ $appointment['status'] }}</td>
+                                                @if ($appointment['status'] == "Active")
+                                                    <td class="text-yellow-500">{{ $appointment['status'] }}</td>
+                                                    @elseif ($appointment['status'] == "Completed")
+                                                    <td class="text-green-500">{{ $appointment['status'] }}</td>
+                                                    @elseif ($appointment['status'] == "Canceled")
+                                                    <td class="text-red-500">{{ $appointment['status'] }}</td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

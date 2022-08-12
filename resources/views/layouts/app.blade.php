@@ -36,6 +36,9 @@
         background-color: #7571f9; /* 2 */
         background-image: none; /* 2 */
         }
+        .table {
+            display: block;
+        }
     </style>
 </head>
 

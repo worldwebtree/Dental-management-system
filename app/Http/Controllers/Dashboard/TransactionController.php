@@ -20,8 +20,6 @@ class TransactionController extends Controller
         ->with('patient')
         ->get();
 
-        // dd($transactions);
-
         return View::make('Dashboard.Transaction', compact('transactions'));
     }
 

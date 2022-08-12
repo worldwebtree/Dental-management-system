@@ -9,13 +9,14 @@
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card">
+                        <x-alerts/>
                         <div class="card-header text-uppercase">
                             <h2>
                                 patients
                             </h2>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-inverse table-responsive">
+                            <table class="table table-striped table-responsive overflow-x-scroll">
                                 <thead class="thead-inverse text-uppercase">
                                     <tr>
                                         <th>avatar</th>
@@ -29,25 +30,31 @@
                                         <th>gender</th>
                                         <th>dob</th>
                                         <th>occupation</th>
+                                        <th>action</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($patients as $patient)
-                                            <tr>
-                                                <td scope="row">{{ $patient->patient['avatar'] }}</td>
-                                                <td>{{ $patient['name'] }}</td>
-                                                <td>{{ $patient['email'] }}</td>
-                                                <td>{{ $patient->patient['phone'] }}</td>
-                                                <td>{{ $patient->patient['address'] }}</td>
-                                                <td>{{ $patient->patient['country'] }}</td>
-                                                <td>{{ $patient->patient['city'] }}</td>
-                                                <td>{{ $patient->patient['age'] }}</td>
-                                                <td>{{ $patient['gender'] }}</td>
-                                                <td>{{ $patient->patient['birthDate'] }}</td>
-                                                <td>{{ $patient->patient['occupation'] }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
+                                </thead>
+                                <tbody>
+                                    @foreach ($patients as $patient)
+                                        <tr>
+                                            <td scope="row">{{ $patient->patient['avatar'] }}</td>
+                                            <td>{{ $patient['name'] }}</td>
+                                            <td>{{ $patient['email'] }}</td>
+                                            <td>{{ $patient->patient['phone'] }}</td>
+                                            <td>{{ $patient->patient['address'] }}</td>
+                                            <td>{{ $patient->patient['country'] }}</td>
+                                            <td>{{ $patient->patient['city'] }}</td>
+                                            <td>{{ $patient->patient['age'] }}</td>
+                                            <td>{{ $patient['gender'] }}</td>
+                                            <td>{{ $patient->patient['birthDate'] }}</td>
+                                            <td>{{ $patient->patient['occupation'] }}</td>
+                                            <td>
+                                                <a href="{{ route('patients.delete', $patient['id']) }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

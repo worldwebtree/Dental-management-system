@@ -27,7 +27,7 @@
                                         @foreach ($transactions as $transaction)
                                             <tr>
                                                 <td scope="row">{{ $transaction->patient->user['name'] }}</td>
-                                                <td>{{ $transaction['id'] }}</td>
+                                                <td>{{ $transaction['appointment_id'] }}</td>
                                                 <td>{{ $transaction['payment'] }}</td>
                                             </tr>
                                         @endforeach

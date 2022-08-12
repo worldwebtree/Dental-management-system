@@ -67,6 +67,7 @@ class AppointmentController extends Controller
             'appointment_time' => ['required'],
             'status' => ['required', 'string'],
             'dentist_id' => ['required'],
+            'appointment_payment' => ['required', 'numeric']
         ]);
 
         $User = $user->create([
@@ -93,7 +94,7 @@ class AppointmentController extends Controller
 
         $appointment_dateTime = $request['appointment_date'].''.$request['appointment_time'];
 
-        $patient
+        $appointments = $patient
         ->appointments()
         ->create(
             [
@@ -103,6 +104,16 @@ class AppointmentController extends Controller
                 'patient-name' => $request['name'],
                 'appointment-dateTime' => Carbon::parse($appointment_dateTime)->toDateTime(),
                 'status' => $request['status'],
+            ]
+        );
+
+        $appointments
+        ->transaction()
+        ->create(
+            [
+                'patient_id' => $appointments->patient_id,
+                'appointment_id' => $appointments->id,
+                'payment' => $request['appointment_payment'],
             ]
         );
 

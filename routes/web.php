@@ -51,6 +51,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/patient', 'index')
         ->name('patients');
 
+        Route::get('/patient-delete/{id}', 'destroy')
+        ->name('patients.delete');
+
     });
 
     Route::controller(AppointmentController::class)

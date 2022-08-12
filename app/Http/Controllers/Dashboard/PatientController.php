@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -85,8 +86,14 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $id)
     {
-        //
+        $delete = $user->findOrFail($id);
+
+        $delete->delete();
+
+        return redirect()
+        ->route('patients')
+        ->with('deleted', 'Patient has been deleted successfully!');
     }
 }

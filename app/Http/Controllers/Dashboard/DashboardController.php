@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Contact;
 use App\Models\Dentist;
 use App\Models\Patient;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,8 @@ class DashboardController extends Controller
 
             $current_date = Carbon::now();
 
+            $transactions = Transaction::count();
+
             $appointments = $user
             ->appointments
             ->where('user_id', $user->id)
@@ -39,11 +42,13 @@ class DashboardController extends Controller
             ->count();
 
             return View::make('Dashboard.dashboard',
-            compact('patients', 'current_date', 'appointments', 'contacts'));
+            compact('patients', 'current_date', 'appointments', 'contacts', 'transactions'));
 
         } elseif($user->role == "Patient") {
 
             $dentists = Dentist::count();
+
+            $transactions = Transaction::count();
 
             $appointments = $user
             ->appointments
@@ -57,7 +62,7 @@ class DashboardController extends Controller
             $current_date = Carbon::now();
 
             return View::make('Dashboard.dashboard',
-            compact('dentists', 'appointments', 'contacts', 'current_date'));
+            compact('dentists', 'appointments', 'contacts', 'current_date', 'transactions'));
         }
     }
 

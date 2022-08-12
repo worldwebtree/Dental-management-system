@@ -43,6 +43,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card gradient-3">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Transactions</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">{{ $transactions }}</h2>
+                                <p class="text-white mb-0">{{ $current_date->format('d M Y') }}</p>
+                            </div>
+                            <span class="float-right display-5"><i class="fas fa-money-bill"></i></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- #/ container -->
