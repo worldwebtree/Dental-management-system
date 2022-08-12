@@ -11,6 +11,8 @@ class Patient extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * The patient belongsTo user
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -76,13 +76,13 @@
                     </div>
                 </li>
                 <li class="icons dropdown">
-                    @if (auth()->user()->role == "Dentist" && auth()->user()->dentist != null)
+                    @if (auth()->user()->role == "Dentist" && auth()->user()->dentist->avatar != null)
                         <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                             <span class="activity active"></span>
                             <img src="{{ asset('storage/profileAvatars/'.auth()->user()->dentist->avatar) }}" height="40" width="40" alt="">
                         </div>
 
-                        @elseif (auth()->user()->role == "Patient" && auth()->user()->patient != null)
+                        @elseif (auth()->user()->role == "Patient" && auth()->user()->patient->avatar != null)
                         <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                             <span class="activity active"></span>
                             <img src="{{ asset('storage/profileAvatars/'.auth()->user()->patient->avatar) }}" height="40" width="40" alt="">

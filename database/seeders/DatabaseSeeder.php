@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Appointment::factory(3)->create([
+            'user_id' => User::value('id'),
             'Patient_id' => Patient::value('id'),
             'Dentist_id' => Dentist::value('id'),
         ]);

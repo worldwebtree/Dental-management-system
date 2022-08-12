@@ -23,6 +23,7 @@
                                 <form action="{{ route('profile.store.dentist') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
                                     <x-error :errors="$errors" />
+                                    <x-alerts/>
                                     <div class="mb-3">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
                                         <input
@@ -114,6 +115,7 @@
                                 <form action="{{ route('profile.store.dentist') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
                                     <x-error :errors="$errors" />
+                                    <x-alerts/>
                                     <div class="mb-3">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
                                         <input
@@ -206,6 +208,7 @@
                                 <form action="{{ route('profile.store.patient') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
                                     <x-error :errors="$errors" />
+                                    <x-alerts/>
                                     <div class="mb-3">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
                                         <input
@@ -287,6 +290,7 @@
                                 <form action="{{ route('profile.store.patient') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
                                     @csrf
                                     <x-error :errors="$errors" />
+                                    <x-alerts/>
                                     <div class="mb-3">
                                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload Avatar</label>
                                         <input

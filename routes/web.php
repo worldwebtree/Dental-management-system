@@ -50,6 +50,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/patient', 'index')
         ->name('patients');
 
+        Route::post('/patient_store', 'store')
+        ->name('patients.store');
+
     });
 
     Route::controller(AppointmentController::class)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
 class PatientController extends Controller
@@ -21,7 +22,7 @@ class PatientController extends Controller
         ->with('patient')
         ->where('role', 'Patient')
         ->get();
-        
+
         return View::make('Dashboard.patient', compact('patients'));
     }
 
@@ -41,9 +42,46 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user, Patient $patient)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'gender' => ['required', 'string'],
+            'phone' => ['required', 'numeric'],
+            'address' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'age' => ['required', 'integer', 'min:25', 'max:100'],
+            'dob' => ['required', 'date'],
+            'Occupation' => ['required', 'string'],
+            'password' => ['required', 'max:8'],
+        ]);
+
+        $user_id = $user->create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role' => 'Patient',
+            'gender' => $request['gender'],
+        ]);
+
+        $patient
+        ->create(
+        [
+            'user_id' => $user_id->id,
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'age' => $request['age'],
+            'birthDate' => $request['dob'],
+            'occupation' => $request['Occupation'],
+        ]);
+
+        return redirect()
+        ->route('patients')
+        ->with('created', 'Patient has been added successfully!');
     }
 
     /**
