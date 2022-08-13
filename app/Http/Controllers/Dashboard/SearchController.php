@@ -3,24 +3,18 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 
-class DentistController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Support\Facades\View
+     * @return \Illuminate\Http\Response
      */
-    public function index(User $dentist)
+    public function index()
     {
-        $dentists = $dentist
-        ->with('dentist')
-        ->get();
-
-        return View::make('Dashboard.dentist', compact('dentists'));
+        //
     }
 
     /**
@@ -41,7 +35,7 @@ class DentistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

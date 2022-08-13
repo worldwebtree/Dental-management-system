@@ -138,7 +138,6 @@
     <script src="{{ asset('assets/js/settings.js') }}"></script>
     <script src="{{ asset('assets/js/gleek.js') }}"></script>
     <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script>
-
     <!-- Chartjs -->
     <script src="{{ asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
 

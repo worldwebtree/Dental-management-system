@@ -28,30 +28,23 @@
                                         <th>age</th>
                                         <th>dob</th>
                                         <th>specialization</th>
-                                        <th>action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td scope="row"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <a href="#">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>|
-                                                <a href="#">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        @foreach ($dentists as $dentist)
+                                            <tr>
+                                                <td scope="row">{{ $dentist->dentist['avatar'] ?? 'not added yet'  }}</td>
+                                                <td>{{ $dentist['name'] }}</td>
+                                                <td>{{ $dentist['email'] }}</td>
+                                                <td>{{ $dentist->dentist['phone'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['address'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['country'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['city'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['age'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['birhtDate'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['specialization'] ?? 'not added yet'   }}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                             </table>
                         </div>

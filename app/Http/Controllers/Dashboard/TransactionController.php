@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class TransactionController extends Controller
@@ -16,11 +17,22 @@ class TransactionController extends Controller
      */
     public function index(Transaction $transaction)
     {
+        $user = Auth::user();
+
         $transactions = $transaction
         ->with('patient')
         ->get();
 
-        return View::make('Dashboard.Transaction', compact('transactions'));
+        $patient_transactions = $user
+        ->patient
+        ->transaction(
+            [
+                'patient_id' => $user->patient->id,
+            ]
+        )
+        ->get();
+
+        return View::make('Dashboard.Transaction', compact('transactions', 'patient_transactions'));
     }
 
     /**

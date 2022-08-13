@@ -21,7 +21,9 @@ class AppointmentController extends Controller
      */
     public function index(Appointment $appointment)
     {
-        $dentists = Auth::user()->dentist;
+        $user = Auth::user();
+        $dentists = $user->dentist;
+        $patients = $user->patient;
 
         $all_dentists = User::where('role', 'Dentist')
         ->with('dentist')
@@ -32,6 +34,11 @@ class AppointmentController extends Controller
         if (!empty($dentists))
             $appointments = $appointment
             ->where('dentist_id', $dentists->id)
+            ->get();
+
+        if (!empty($patients))
+            $appointments = $appointment
+            ->where('patient_id', $patients->id)
             ->get();
 
         return View::make('Dashboard.appointment', compact('appointments', 'all_dentists'));
@@ -45,6 +52,41 @@ class AppointmentController extends Controller
     public function create()
     {
         //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get_appointment(Request $request)
+    {
+        $request->validate([
+            'appointment_date' => ['required', 'date'],
+            'appointment_time' => ['required'],
+            'dentist_id' => ['required'],
+            'dentist_service' => ['required', 'string']
+        ]);
+
+        $user = $request->user();
+
+        $appointment_dateTime = $request['appointment_date'].''.$request['appointment_time'];
+
+        $user
+        ->appointments()
+        ->create([
+            'user_id' => $user->id,
+            'patient_id' => $user->patient->id,
+            'dentist_id' => $request['dentist_id'],
+            'patient-name' => $user->name,
+            'appointment-dateTime' => Carbon::parse($appointment_dateTime)->toDateTime(),
+            'dentist_service' => $request['dentist_service'],
+            'status' => 'Active',
+        ]);
+
+        return redirect()
+        ->route('appointments')
+        ->with('created', 'Appointment has been created successfully!');
     }
 
     /**

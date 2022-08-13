@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DentistController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/appointments_store', 'store')
         ->name('appointments.store');
 
+        Route::post('/appointments_get_appointment', 'get_appointment')
+        ->name('appointments.get.appointment');
+
         Route::get('/appointments_cancel/{id}', 'cancel')
         ->name('appointments.cancel');
 
@@ -94,6 +98,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/transaction', 'index')
         ->name('transactions');
+
+    });
+
+    Route::controller(SearchController::class)
+    ->group(function () {
+
+        Route::post('/search', 'store')
+        ->name('search.store');
 
     });
 });

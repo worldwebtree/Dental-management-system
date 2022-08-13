@@ -98,7 +98,57 @@ class ProfileController extends Controller
      */
     public function storePatient(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'name' => ['required', 'string'],
+            'gender' => ['required', 'string'],
+            'phone' => ['required', 'numeric'],
+            'address' => ['required', 'string'],
+            'country' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'age' => ['required', 'integer', 'min:25', 'max:100'],
+            'dob' => ['required', 'date'],
+            'Occupation' => ['required','string'],
+        ]);
+
+        if (empty($request->hasFile('patientAvatar')) && $request['patientAvatar'] == null) {
+
+            $avatar_name = $request->user()->dentist->avatar;
+
+        } else {
+
+            $file = $request->file('patientAvatar');
+
+            $avatar_name = $file->hashName();
+
+            $file->move(public_path('storage/profileAvatars'), $avatar_name);
+        }
+
+        $request
+        ->user()
+        ->update([
+            'name' => $request['name'],
+            'gender' => $request['gender'],
+        ]);
+
+        $request
+        ->user()
+        ->patient()
+        ->updateOrCreate(
+            ['user_id' => $request->user()->id],
+        [
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'country' => $request['country'],
+            'city' => $request['city'],
+            'age' => $request['age'],
+            'birthDate' => $request['dob'],
+            'occupation' => $request['Occupation'],
+            'avatar' => $avatar_name,
+        ]);
+
+        return redirect()
+        ->route('profile')
+        ->with('updated', 'Your Profile has been updated!');
     }
 
 

@@ -68,17 +68,59 @@ class DashboardController extends Controller
             ->count();
 
             return View::make('Dashboard.dashboard',
-            compact('patients', 'current_date', 'appointments', 'completed_appointments', 'canceled_appointments', 'contacts', 'transactions'));
+            compact(['patients',
+                    'current_date',
+                    'appointments',
+                    'completed_appointments',
+                    'canceled_appointments',
+                    'contacts',
+                    'transactions'
+            ]));
 
         } elseif($user->role == "Patient") {
 
             $dentists = Dentist::count();
 
-            $transactions = Transaction::count();
-
             $appointments = $user
-            ->appointments
-            ->where('user_id', $user->id)
+            ->patient
+            ->appointments()
+            ->where(
+                [
+                    'patient_id' => $user->patient->id,
+                    'status' => 'Active'
+                ],
+            )
+            ->count();
+
+            $completed_appointments = $user
+            ->patient
+            ->appointments()
+            ->where(
+                [
+                    'patient_id' => $user->patient->id,
+                    'status' => 'Completed'
+                ],
+            )
+            ->count();
+
+            $canceled_appointments = $user
+            ->patient
+            ->appointments()
+            ->where(
+                [
+                    'patient_id' => $user->patient->id,
+                    'status' => 'Canceled'
+                ],
+            )
+            ->count();
+
+            $transactions = $user
+            ->patient
+            ->transaction(
+                [
+                    'patient_id' => $user->patient->id,
+                ],
+            )
             ->count();
 
             $contacts = $user
@@ -88,7 +130,14 @@ class DashboardController extends Controller
             $current_date = Carbon::now();
 
             return View::make('Dashboard.dashboard',
-            compact('dentists', 'appointments', 'contacts', 'current_date', 'transactions'));
+            compact(['dentists',
+                'current_date',
+                'appointments',
+                'completed_appointments',
+                'canceled_appointments',
+                'contacts',
+                'transactions'
+            ]));
         }
     }
 

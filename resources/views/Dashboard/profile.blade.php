@@ -224,12 +224,12 @@
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputName" class="form-label">name</label>
-                                            <input type="text" name="name" class="form-control" id="inputName">
+                                            <input type="text" name="name" value="{{ $user->name }}" class="form-control" id="inputName">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputEmail" class="form-label">email</label>
-                                            <input type="email" disabled class="form-control" id="inputEmail">
+                                            <input type="email" disabled class="form-control" value="{{ $user->email }}" id="inputEmail">
                                         </div>
                                     </div>
 
@@ -237,6 +237,7 @@
                                         <div class="col-6">
                                             <label for="inputGender" class="form-label">gender</label>
                                             <select class="form-control" name="gender" id="inputGender">
+                                                <option value="{{ $user->gender }}">{{ $user->gender }}</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
                                                 <option>other</option>
@@ -245,45 +246,45 @@
 
                                         <div class="col-6">
                                             <label for="inputPhone" class="form-label">phone</label>
-                                            <input type="number" name="phone" class="form-control" id="inputPhone">
+                                            <input type="number" name="phone" class="form-control" value="{{ $user->patient->phone }}" id="inputPhone">
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputAddress" class="form-label">address</label>
-                                        <input type="text" name="address" class="form-control" id="inputAddress">
+                                        <input type="text" name="address" class="form-control" value="{{ $user->patient->address }}" id="inputAddress">
                                     </div>
 
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputCountry" class="form-label">country</label>
-                                            <input type="text" name="country" class="form-control" id="inputCountry">
+                                            <input type="text" name="country" class="form-control" value="{{ $user->patient->country }}" id="inputCountry">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputCity" class="form-label">city</label>
-                                            <input type="text" name="city" class="form-control" id="inputCity">
+                                            <input type="text" name="city" class="form-control" value="{{ $user->patient->city }}" id="inputCity">
                                         </div>
                                     </div>
 
                                     <div class="d-flex mb-3">
                                         <div class="col-6">
                                             <label for="inputAge" class="form-label">age</label>
-                                            <input type="number" name="age" class="form-control" id="inputAge">
+                                            <input type="number" name="age" class="form-control" value="{{ $user->patient->age }}" id="inputAge">
                                         </div>
 
                                         <div class="col-6">
                                             <label for="inputDob" class="form-label">date of birth</label>
-                                            <input type="date" name="dob" class="form-control" id="inputDob">
+                                            <input type="date" name="dob" class="form-control" value="{{ $user->patient->birthDate }}" id="inputDob">
                                         </div>
                                     </div>
 
                                     <div class="col-6 mb-3">
                                         <label for="inputOccupation" class="form-label">occupation</label>
-                                        <input type="text" class="form-control" name="Occupation" id="inputOccupation">
+                                        <input type="text" class="form-control" name="Occupation" value="{{ $user->patient->occupation }}" id="inputOccupation">
                                     </div>
 
-                                    <button type="submit" class="btn btn-lg button-primary float-right">Update</button>
+                                    <button type="submit" class="btn btn-lg btn-primary float-right">Update</button>
                                 </form>
 
                                 @elseif ($user->role == "Patient" && $user->patient == null)
@@ -298,7 +299,7 @@
                                         aria-describedby="file_input_help"
                                         id="file_input"
                                         type="file"
-                                        name="dentistAvatar"
+                                        name="patientAvatar"
                                         value="{{ asset('assets/images/user/1.jpg') }}"
                                         accept="image/png, image/jpeg, image/jpg">
                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or JPEG.</p>
