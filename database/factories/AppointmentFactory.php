@@ -19,6 +19,7 @@ class AppointmentFactory extends Factory
         return [
             'patient-name' => fake()->name(),
             'appointment-dateTime' => fake()->dateTime(),
+            'dentist_service' => fake()->name(),
             'status' => fake()->randomElement(['Active', 'Completed', 'Canceled']),
         ];
     }

@@ -20,9 +20,9 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card gradient-2">
+                    <div class="card gradient-1">
                         <div class="card-body">
-                            <h3 class="card-title text-white">Appointments</h3>
+                            <h3 class="card-title text-white">Active Appointments</h3>
                             <div class="d-inline-block">
                                 <h2 class="text-white">{{ $appointments }}</h2>
                                 <p class="text-white mb-0">{{ $current_date->format('d M Y') }}</p>
@@ -32,7 +32,31 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card gradient-3">
+                    <div class="card gradient-1">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Completed Appointments</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">{{ $completed_appointments }}</h2>
+                                <p class="text-white mb-0">{{ $current_date->format('d M Y') }}</p>
+                            </div>
+                            <span class="float-right display-5"><i class="fas fa-check"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card gradient-1">
+                        <div class="card-body">
+                            <h3 class="card-title text-white">Canceled Appointments</h3>
+                            <div class="d-inline-block">
+                                <h2 class="text-white">{{ $canceled_appointments }}</h2>
+                                <p class="text-white mb-0">{{ $current_date->format('d M Y') }}</p>
+                            </div>
+                            <span class="float-right display-5"><i class="fas fa-times"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card gradient-1">
                         <div class="card-body">
                             <h3 class="card-title text-white">Contacts</h3>
                             <div class="d-inline-block">
@@ -44,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card gradient-3">
+                    <div class="card gradient-1">
                         <div class="card-body">
                             <h3 class="card-title text-white">Transactions</h3>
                             <div class="d-inline-block">

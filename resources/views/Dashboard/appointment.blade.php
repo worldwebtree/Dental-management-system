@@ -1,3 +1,17 @@
+@php
+    $services = [
+        'Complete exams, x-rays, and dental cleanings',
+        'Fillings, root canals, and extractions',
+        'Cosmetic dentistry, such as whitening, porcelain and composite veneers',
+        'Implants - placement and restoration',
+        'Crowns, bridges, full and partial dentures',
+        'Implants',
+        'Orthodontics',
+        'Oral appliances for control of sleep apnea',
+        'Preventive care, periodontal therapy, and nutritional counseling',
+        'Relaxation techniques using nitrous oxide sedation',
+    ];
+@endphp
 <x-app-layout>
 
     <x-slot name="title">
@@ -120,11 +134,11 @@
                                                 </div>
 
                                                 <div class="d-flex">
-                                                    <div class="col-6 mb-3">
+                                                    <div class=" col-6 mb-3">
                                                         <label for="inputDentistName" class="form-label">Dentists</label>
                                                         <select class="form-control" name="dentist_id" id="inputDentistName">
                                                             @foreach ($all_dentists as $credential)
-                                                                <option value="{{ $credential->id }}">
+                                                                <option value="{{ $credential->dentist->id }}">
                                                                     {{ $credential->name }}
                                                                 </option>
                                                             @endforeach
@@ -135,6 +149,17 @@
                                                         <label for="inputAppointmentPayment" class="form-label">appointment payment</label>
                                                         <input type="number" class="form-control" name="appointment_payment" id="inputAppointmentPayment">
                                                     </div>
+                                                </div>
+
+                                                <div class="col-12 mb-3">
+                                                    <label for="inputDentistService" class="form-label">services</label>
+                                                    <select class="form-control" name="dentist_service" id="inputDentistService">
+                                                        @foreach ($services as $service)
+                                                            <option value="{{ $service }}">
+                                                                {{ $service }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
                                                 <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>
@@ -151,7 +176,9 @@
                                     <tr>
                                         <th>patient name</th>
                                         <th>appointment datetime</th>
+                                        <th>service</th>
                                         <th>status</th>
+                                        <th>actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -159,6 +186,7 @@
                                             <tr>
                                                 <td scope="row">{{ $appointment['patient-name'] }}</td>
                                                 <td>{{ $appointment['appointment-dateTime'] }}</td>
+                                                <td>{{ $appointment['dentist_service'] }}</td>
                                                 @if ($appointment['status'] == "Active")
                                                     <td class="text-yellow-500">{{ $appointment['status'] }}</td>
                                                     @elseif ($appointment['status'] == "Completed")
@@ -166,6 +194,11 @@
                                                     @elseif ($appointment['status'] == "Canceled")
                                                     <td class="text-red-500">{{ $appointment['status'] }}</td>
                                                 @endif
+                                                <td>
+                                                    <a href="{{ route('appointments.cancel', $appointment['id']) }}" data-toggle="tooltip" data-placement="top" title="cancel">
+                                                        <i class="fas fa-times fa-lg hover:text-red-500"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

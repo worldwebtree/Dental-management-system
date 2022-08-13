@@ -36,17 +36,17 @@
                                 <tbody>
                                     @foreach ($patients as $patient)
                                         <tr>
-                                            <td scope="row">{{ $patient->patient['avatar'] }}</td>
+                                            <td scope="row">{{ $patient->patient['avatar'] ?? 'not added yet' }}</td>
                                             <td>{{ $patient['name'] }}</td>
                                             <td>{{ $patient['email'] }}</td>
-                                            <td>{{ $patient->patient['phone'] }}</td>
-                                            <td>{{ $patient->patient['address'] }}</td>
-                                            <td>{{ $patient->patient['country'] }}</td>
-                                            <td>{{ $patient->patient['city'] }}</td>
-                                            <td>{{ $patient->patient['age'] }}</td>
+                                            <td>{{ $patient->patient['phone'] ?? 'not added yet'  }}</td>
+                                            <td>{{ $patient->patient['address'] ?? 'not added yet'  }}</td>
+                                            <td>{{ $patient->patient['country'] ?? 'not added yet'  }}</td>
+                                            <td>{{ $patient->patient['city'] ?? 'not added yet'  }}</td>
+                                            <td>{{ $patient->patient['age'] ?? 'not added yet'  }}</td>
                                             <td>{{ $patient['gender'] }}</td>
-                                            <td>{{ $patient->patient['birthDate'] }}</td>
-                                            <td>{{ $patient->patient['occupation'] }}</td>
+                                            <td>{{ $patient->patient['birthDate'] ?? 'not added yet'  }}</td>
+                                            <td>{{ $patient->patient['occupation'] ?? 'not added yet'  }}</td>
                                             <td>
                                                 <a href="{{ route('patients.delete', $patient['id']) }}">
                                                     <i class="fas fa-trash"></i>

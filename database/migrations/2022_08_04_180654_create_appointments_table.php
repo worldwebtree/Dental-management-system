@@ -33,6 +33,7 @@ return new class extends Migration
 
             $table->string('patient-name');
             $table->dateTime('appointment-dateTime');
+            $table->string('dentist_service');
             $table->enum('status', ['Active', 'Completed', 'Canceled']);
 
             $table->timestamps();

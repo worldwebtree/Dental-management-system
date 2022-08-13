@@ -62,8 +62,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/appointments', 'index')
         ->name('appointments');
 
-        Route::post('/appointment_store', 'store')
+        Route::post('/appointments_store', 'store')
         ->name('appointments.store');
+
+        Route::get('/appointments_cancel/{id}', 'cancel')
+        ->name('appointments.cancel');
 
     });
 

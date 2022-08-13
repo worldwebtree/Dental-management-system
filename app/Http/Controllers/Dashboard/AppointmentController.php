@@ -24,11 +24,15 @@ class AppointmentController extends Controller
         $dentists = Auth::user()->dentist;
 
         $all_dentists = User::where('role', 'Dentist')
+        ->with('dentist')
         ->get();
 
-        $appointments = $appointment
-        ->where('dentist_id', $dentists->id)
-        ->get();
+        $appointments = [];
+
+        if (!empty($dentists))
+            $appointments = $appointment
+            ->where('dentist_id', $dentists->id)
+            ->get();
 
         return View::make('Dashboard.appointment', compact('appointments', 'all_dentists'));
     }
@@ -67,7 +71,8 @@ class AppointmentController extends Controller
             'appointment_time' => ['required'],
             'status' => ['required', 'string'],
             'dentist_id' => ['required'],
-            'appointment_payment' => ['required', 'numeric']
+            'appointment_payment' => ['required', 'numeric'],
+            'dentist_service' => ['required', 'string']
         ]);
 
         $User = $user->create([
@@ -103,6 +108,7 @@ class AppointmentController extends Controller
                 'dentist_id' => $request['dentist_id'],
                 'patient-name' => $request['name'],
                 'appointment-dateTime' => Carbon::parse($appointment_dateTime)->toDateTime(),
+                'dentist_service' => $request['dentist_service'],
                 'status' => $request['status'],
             ]
         );
@@ -154,6 +160,27 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cancel($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+
+        $appointment->update(
+            [
+                'status' => 'Canceled',
+            ]
+        );
+
+        return redirect()
+        ->route('appointments')
+        ->with('updated', 'Appointment status has been updated successfully!');
     }
 
     /**

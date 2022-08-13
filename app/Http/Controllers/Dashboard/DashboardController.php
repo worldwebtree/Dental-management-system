@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Appointment;
-use App\Models\Contact;
 use App\Models\Dentist;
 use App\Models\Patient;
 use App\Models\Transaction;
@@ -33,8 +31,36 @@ class DashboardController extends Controller
             $transactions = Transaction::count();
 
             $appointments = $user
-            ->appointments
-            ->where('user_id', $user->id)
+            ->dentist
+            ->appointments()
+            ->where(
+                [
+                    'dentist_id' => $user->dentist->id,
+                    'status' => 'Active'
+                ],
+            )
+            ->count();
+
+            $completed_appointments = $user
+            ->dentist
+            ->appointments()
+            ->where(
+                [
+                    'dentist_id' => $user->dentist->id,
+                    'status' => 'Completed'
+                ],
+            )
+            ->count();
+
+            $canceled_appointments = $user
+            ->dentist
+            ->appointments()
+            ->where(
+                [
+                    'dentist_id' => $user->dentist->id,
+                    'status' => 'Canceled'
+                ],
+            )
             ->count();
 
             $contacts = $user
@@ -42,7 +68,7 @@ class DashboardController extends Controller
             ->count();
 
             return View::make('Dashboard.dashboard',
-            compact('patients', 'current_date', 'appointments', 'contacts', 'transactions'));
+            compact('patients', 'current_date', 'appointments', 'completed_appointments', 'canceled_appointments', 'contacts', 'transactions'));
 
         } elseif($user->role == "Patient") {
 
