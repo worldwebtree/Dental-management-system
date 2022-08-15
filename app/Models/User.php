@@ -64,15 +64,6 @@ class User extends Authenticatable
         return $this->hasOne(Patient::class);
     }
 
-        /**
-     * The user has a one to many relation with contact
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function contact(): HasMany
-    {
-        return $this->hasMany(Contact::class);
-    }
-
             /**
      * The user has a one to many relation with appointments
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

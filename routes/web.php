@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AppointmentController;
 use App\Http\Controllers\Dashboard\ContactPatientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DentistController;
+use App\Http\Controllers\Dashboard\MailController;
 use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\SearchController;
@@ -23,6 +24,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend');
+})->name('home');
+
+Route::controller(MailController::class)->group(function () {
+
+    Route::post('/mail', 'store')
+    ->name('mail.store');
+
 });
 
 Route::middleware(['auth'])->group(function () {

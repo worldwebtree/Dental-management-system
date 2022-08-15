@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => env('MAIL_MAILER', 'failover'),
 
     /*
     |--------------------------------------------------------------------------
@@ -76,6 +76,9 @@ return [
             'mailers' => [
                 'smtp',
                 'log',
+                'mailgun',
+                'postmark',
+                'sendmail',
             ],
         ],
     ],
@@ -92,9 +95,16 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name' => env('MAIL_FROM_NAME'),
+        'message' => 'Welcome to Huzaifa Dental Clinic. The world best dental clinic that you can trust !',
     ],
+
+    'to' => [
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name' => env('MAIL_FROM_NAME'),
+    ],
+
 
     /*
     |--------------------------------------------------------------------------
