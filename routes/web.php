@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\PatientController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\TransactionController;
+use App\Http\Controllers\FrontEnd\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend');
-})->name('home');
+Route::controller(FrontendController::class)->group(function () {
+
+    Route::get('/', 'index')->name('home');
+
+});
 
 Route::controller(ContactPatientController::class)->group(function () {
 
