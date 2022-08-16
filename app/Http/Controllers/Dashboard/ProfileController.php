@@ -87,7 +87,7 @@ class ProfileController extends Controller
 
         return redirect()
         ->route('profile')
-        ->with('updated', 'Your Profile has been updated!');
+        ->with('success', 'Your Profile has been updated successfully!');
     }
 
         /**
@@ -148,7 +148,7 @@ class ProfileController extends Controller
 
         return redirect()
         ->route('profile')
-        ->with('updated', 'Your Profile has been updated!');
+        ->with('success', 'Your Profile has been updated successfully!');
     }
 
 

@@ -15,8 +15,6 @@
                             </h2>
                         </div>
                         <div class="card-body">
-                            <x-alerts/>
-
                             <table class="table table-striped table-inverse table-responsive">
                                 <thead class="thead-inverse text-uppercase">
                                     <tr>
@@ -35,7 +33,9 @@
                                                 <td>{{ $contact['subject'] }}</td>
                                                 <td>{{ $contact['message'] }}</td>
                                                 <td>
-                                                    <a href="{{ route('delete', $contact['id']) }}">
+                                                    <a href="{{ route('contacts.delete', $contact['id']) }}"
+                                                    data-toggle="tooltip"
+                                                    data-title="Delete">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 </td>

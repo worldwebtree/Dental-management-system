@@ -17,6 +17,7 @@ class DentistController extends Controller
     public function index(User $dentist)
     {
         $dentists = $dentist
+        ->where('role', 'Dentist')
         ->with('dentist')
         ->get();
 

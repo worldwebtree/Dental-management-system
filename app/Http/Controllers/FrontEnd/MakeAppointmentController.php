@@ -1,41 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\FrontEnd;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 
-class TransactionController extends Controller
+class MakeAppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Support\Facades\View
+     * @return \Illuminate\Http\Response
      */
-    public function index(Transaction $transaction)
+    public function index()
     {
-        $user = Auth::user();
-
-        $transactions = $transaction
-        ->with('patient')
-        ->get();
-
-        $patient_transactions = 0;
-
-        if ($user->role == "Patient")
-            $patient_transactions = $user
-            ->patient
-            ->transaction(
-                [
-                    'patient_id' => $user->patient->id,
-                ]
-            )
-            ->get();
-
-        return View::make('Dashboard.Transaction', compact('transactions', 'patient_transactions'));
+        //
     }
 
     /**
@@ -56,7 +36,37 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'service' => ['required', 'string'],
+            'dentist_id' => ['required', 'string'],
+            'date' => ['required', 'date'],
+            'time' => ['required'],
+        ]);
+
+        if (!$request->user())
+            return redirect()
+            ->route('login')
+            ->with('not_authenticated', 'Please login first then try to make appointment!');
+
+        $user = $request->user();
+
+        $appointment_dateTime = $request['date'].''.$request['time'];
+
+        $user->patient
+        ->appointments()
+        ->create([
+            'user_id' => $user->id,
+            'patient_id' => $user->patient->id,
+            'dentist_id' => $request['dentist_id'],
+            'patient-name' => $user->name,
+            'appointment-dateTime' => Carbon::parse($appointment_dateTime)->toDateTime(),
+            'dentist_service' => $request['service'],
+            'status' => 'Active',
+        ]);
+
+        return redirect()
+        ->route('appointments')
+        ->with('success', 'Appointment has been created successfully!');
     }
 
     /**

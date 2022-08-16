@@ -227,7 +227,7 @@
                 <div class="col-lg-6">
                     <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
                         <h1 class="text-white mb-4">Make Appointment</h1>
-                        <form action="" method="POST">
+                        <form action="{{ route('make.appointment.store') }}" method="POST">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
@@ -241,21 +241,15 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" name="dentist" style="height: 55px;">
+                                    <select class="form-select bg-light border-0" name="dentist_id" style="height: 55px;">
                                         <option selected>Select Doctor</option>
                                         @foreach ($dentist as $den)
-                                            <option value="{{ $den['id'] }}">
+                                            <option value="{{ $den->dentist['id'] }}">
                                                 {{ $den['name'] }}
                                             </option>
                                         @endforeach
 
                                     </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" name="name" placeholder="Your Name" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control bg-light border-0" name="email" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">

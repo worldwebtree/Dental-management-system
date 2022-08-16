@@ -15,4 +15,10 @@
     <div class="alert alert-primary" role="alert">
         <strong>{{ session('deleted') }}</strong>
     </div>
+
+    @elseif (session('not_authenticated'))
+
+    <div class="alert alert-info" role="alert">
+        <strong>{{ session('not_authenticated') }}</strong>
+    </div>
 @endif

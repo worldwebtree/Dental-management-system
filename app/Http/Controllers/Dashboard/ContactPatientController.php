@@ -126,6 +126,6 @@ class ContactPatientController extends Controller
 
         return redirect()
         ->route('contacts')
-        ->with('deleted', 'The Contact info has been permanently deleted!');
+        ->with('success', 'The Contact info has been permanently deleted!');
     }
 }

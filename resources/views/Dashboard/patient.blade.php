@@ -9,7 +9,6 @@
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
                     <div class="card">
-                        <x-alerts/>
                         <div class="card-header text-uppercase">
                             <h2>
                                 patients
@@ -48,7 +47,9 @@
                                             <td>{{ $patient->patient['birthDate'] ?? 'not added yet'  }}</td>
                                             <td>{{ $patient->patient['occupation'] ?? 'not added yet'  }}</td>
                                             <td>
-                                                <a href="{{ route('patients.delete', $patient['id']) }}">
+                                                <a href="{{ route('patients.delete', $patient['id']) }}"
+                                                data-toggle="tooltip"
+                                                data-title="Delete">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>

@@ -19,15 +19,17 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Support\Facades\View
      */
-    public function index(Appointment $appointment)
+    public function index(Appointment $appointment, User $users)
     {
         $user = Auth::user();
         $dentists = $user->dentist;
         $patients = $user->patient;
 
-        $all_dentists = User::where('role', 'Dentist')
-        ->with('dentist')
-        ->get();
+        if (!empty($users->dentist()))
+            $all_dentists = $users
+            ->where('role', 'Dentist')
+            ->with('dentist')
+            ->get();
 
         $appointments = [];
 
@@ -65,14 +67,15 @@ class AppointmentController extends Controller
             'appointment_date' => ['required', 'date'],
             'appointment_time' => ['required'],
             'dentist_id' => ['required'],
-            'dentist_service' => ['required', 'string']
+            'dentist_service' => ['required', 'string'],
+            'appointment_payment' => ['required', 'string'],
         ]);
 
         $user = $request->user();
 
         $appointment_dateTime = $request['appointment_date'].''.$request['appointment_time'];
 
-        $user
+        $appointments = $user
         ->appointments()
         ->create([
             'user_id' => $user->id,
@@ -84,9 +87,19 @@ class AppointmentController extends Controller
             'status' => 'Active',
         ]);
 
+        $appointments
+        ->transaction()
+        ->create(
+            [
+                'patient_id' => $appointments->patient_id,
+                'appointment_id' => $appointments->id,
+                'payment' => $request['appointment_payment'],
+            ]
+        );
+
         return redirect()
         ->route('appointments')
-        ->with('created', 'Appointment has been created successfully!');
+        ->with('success', 'Appointment has been created successfully!');
     }
 
     /**
@@ -105,7 +118,7 @@ class AppointmentController extends Controller
             'address' => ['required', 'string'],
             'country' => ['required', 'string'],
             'city' => ['required', 'string'],
-            'age' => ['required', 'integer', 'min:25', 'max:100'],
+            'age' => ['required', 'integer','max:100'],
             'dob' => ['required', 'date'],
             'Occupation' => ['required', 'string'],
             'password' => ['required', 'max:8'],
@@ -167,7 +180,7 @@ class AppointmentController extends Controller
 
         return redirect()
         ->route('appointments')
-        ->with('created', 'Appointment has been created successfully!');
+        ->with('success', 'Appointment has been created successfully!');
     }
 
     /**
@@ -222,7 +235,7 @@ class AppointmentController extends Controller
 
         return redirect()
         ->route('appointments')
-        ->with('updated', 'Appointment status has been updated successfully!');
+        ->with('success', 'Appointment status has been updated successfully!');
     }
 
     /**
@@ -231,8 +244,15 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Appointment $appointment, $id)
     {
-        //
+        $delete = $appointment
+        ->findOrFail($id);
+
+        $delete->delete();
+
+        return redirect()
+        ->route('appointments')
+        ->with('success', 'Appointment has been deleted successfully!');
     }
 }

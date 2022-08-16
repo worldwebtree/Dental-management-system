@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use App\Http\Controllers\FrontEnd\FrontendController;
+use App\Http\Controllers\FrontEnd\MakeAppointmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,13 @@ Route::controller(ContactPatientController::class)->group(function () {
 
     Route::post('/contact', 'store')
     ->name('contact.store');
+
+});
+
+Route::controller(MakeAppointmentController::class)->group(function () {
+
+    Route::post('/make-appointment', 'store')
+    ->name('make.appointment.store');
 
 });
 
@@ -83,6 +91,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/appointments_cancel/{id}', 'cancel')
         ->name('appointments.cancel');
 
+        Route::get('/appointments_delete/{id}', 'destroy')
+        ->name('appointments.delete');
+
     });
 
     Route::controller(ContactPatientController::class)
@@ -91,8 +102,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/contact', 'index')
         ->name('contacts');
 
-        Route::get('/delete/{id}', 'destroy')
-        ->name('delete');
+        Route::get('/contact-delete/{id}', 'destroy')
+        ->name('contacts.delete');
 
     });
 

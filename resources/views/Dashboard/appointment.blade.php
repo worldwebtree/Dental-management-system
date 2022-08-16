@@ -25,7 +25,6 @@
                     <div class="col-lg-12 col-xl-12">
                         <div class="card">
                             <x-error :errors="$errors" />
-                            <x-alerts/>
                             <div class="card-header text-uppercase flex justify-between">
                                 <h2>
                                     appointments
@@ -98,7 +97,7 @@
                                                     <div class="d-flex mb-3">
                                                         <div class="col-6">
                                                             <label for="inputAge" class="form-label">age</label>
-                                                            <input type="number" name="age" class="form-control" min="25" max="100" value="" id="inputAge">
+                                                            <input type="number" name="age" class="form-control" max="100" value="" id="inputAge">
                                                         </div>
 
                                                         <div class="col-6">
@@ -138,9 +137,9 @@
                                                         <div class=" col-6 mb-3">
                                                             <label for="inputDentistName" class="form-label">Dentists</label>
                                                             <select class="form-control" name="dentist_id" id="inputDentistName">
-                                                                @foreach ($all_dentists as $credential)
-                                                                    <option value="{{ $credential->dentist->id }}">
-                                                                        {{ $credential->name }}
+                                                                @foreach ($all_dentists as $dentists)
+                                                                    <option value="{{ $dentists->dentist->id }}">
+                                                                        {{ $dentists->name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -197,7 +196,12 @@
                                                     @endif
                                                     <td>
                                                         <a href="{{ route('appointments.cancel', $appointment['id']) }}" data-toggle="tooltip" data-placement="top" title="cancel">
-                                                            <i class="fas fa-times fa-lg hover:text-red-500"></i>
+                                                            <i class="fas fa-times fa-lg"></i>
+                                                        </a>|
+                                                        <a href="{{ route('appointments.delete', $appointment['id']) }}"
+                                                        data-toggle="tooltip"
+                                                        data-title="Delete">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -252,9 +256,9 @@
                                                         <div class=" col-6 mb-3">
                                                             <label for="inputDentistName" class="form-label">Dentists</label>
                                                             <select class="form-control" name="dentist_id" id="inputDentistName">
-                                                                @foreach ($all_dentists as $credential)
-                                                                    <option value="{{ $credential->dentist->id }}">
-                                                                        {{ $credential->name }}
+                                                                @foreach ($all_dentists as $dentists)
+                                                                    <option value="{{ $dentists->dentist->id }}">
+                                                                        {{ $dentists->name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -270,6 +274,11 @@
                                                                 </option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+
+                                                    <div class="col-12 mb-3">
+                                                        <label for="inputAppointmentPayment" class="form-label">appointment payment</label>
+                                                        <input type="number" class="form-control" name="appointment_payment" id="inputAppointmentPayment">
                                                     </div>
 
                                                     <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>

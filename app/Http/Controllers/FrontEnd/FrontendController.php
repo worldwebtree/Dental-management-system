@@ -18,6 +18,7 @@ class FrontendController extends Controller
     {
         $dentist = $user
         ->where('role', 'Dentist')
+        ->with('dentist')
         ->get();
 
         return view('frontend', compact('dentist'));

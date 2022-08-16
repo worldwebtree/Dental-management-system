@@ -41,7 +41,7 @@
                                                 <td>{{ $dentist->dentist['country'] ?? 'not added yet'   }}</td>
                                                 <td>{{ $dentist->dentist['city'] ?? 'not added yet'   }}</td>
                                                 <td>{{ $dentist->dentist['age'] ?? 'not added yet'   }}</td>
-                                                <td>{{ $dentist->dentist['birhtDate'] ?? 'not added yet'   }}</td>
+                                                <td>{{ $dentist->dentist['birthDate'] ?? 'not added yet'   }}</td>
                                                 <td>{{ $dentist->dentist['specialization'] ?? 'not added yet'   }}</td>
                                             </tr>
                                         @endforeach
