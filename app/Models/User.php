@@ -72,4 +72,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class);
     }
+
+    /**
+     * The user has a one to many relation with contacts
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contacts(): HasMany
+    {
+        return $this->hasMany(Contact::class);
+    }
 }

@@ -26,10 +26,10 @@ Route::get('/', function () {
     return view('frontend');
 })->name('home');
 
-Route::controller(MailController::class)->group(function () {
+Route::controller(ContactPatientController::class)->group(function () {
 
-    Route::post('/mail', 'store')
-    ->name('mail.store');
+    Route::post('/contact', 'store')
+    ->name('contact.store');
 
 });
 

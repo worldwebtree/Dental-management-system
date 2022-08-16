@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use App\Models\Dentist;
 use App\Models\Patient;
 use App\Models\Transaction;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +23,10 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $dentist = $user->dentist;
+        $patient = $user->patient;
+        $contact = $user->contacts;
+        $contacts = Contact::count();
 
         if ($user->role == "Dentist") {
 
@@ -30,42 +36,47 @@ class DashboardController extends Controller
 
             $transactions = Transaction::count();
 
-            $appointments = $user
-            ->dentist
-            ->appointments()
-            ->where(
-                [
-                    'dentist_id' => $user->dentist->id,
-                    'status' => 'Active'
-                ],
-            )
-            ->count();
+            $appointments = 0;
 
-            $completed_appointments = $user
-            ->dentist
-            ->appointments()
-            ->where(
-                [
-                    'dentist_id' => $user->dentist->id,
-                    'status' => 'Completed'
-                ],
-            )
-            ->count();
+            $completed_appointments = 0;
 
-            $canceled_appointments = $user
-            ->dentist
-            ->appointments()
-            ->where(
-                [
-                    'dentist_id' => $user->dentist->id,
-                    'status' => 'Canceled'
-                ],
-            )
-            ->count();
+            $canceled_appointments = 0;
 
-            $contacts = $user
-            ->contact
-            ->count();
+            if ($dentist != null) {
+
+                $appointments = $user
+                ->dentist
+                ->appointments()
+                ->where(
+                    [
+                        'dentist_id' => $user->dentist->id,
+                        'status' => 'Active'
+                    ],
+                )
+                ->count();
+
+                $completed_appointments = $user
+                ->dentist
+                ->appointments()
+                ->where(
+                    [
+                        'dentist_id' => $user->dentist->id,
+                        'status' => 'Completed'
+                    ],
+                )
+                ->count();
+
+                $canceled_appointments = $user
+                ->dentist
+                ->appointments()
+                ->where(
+                    [
+                        'dentist_id' => $user->dentist->id,
+                        'status' => 'Canceled'
+                    ],
+                )
+                ->count();
+            }
 
             return View::make('Dashboard.dashboard',
             compact(['patients',
@@ -81,51 +92,67 @@ class DashboardController extends Controller
 
             $dentists = Dentist::count();
 
-            $appointments = $user
-            ->patient
-            ->appointments()
-            ->where(
-                [
-                    'patient_id' => $user->patient->id,
-                    'status' => 'Active'
-                ],
-            )
-            ->count();
+            $appointments = 0;
 
-            $completed_appointments = $user
-            ->patient
-            ->appointments()
-            ->where(
-                [
-                    'patient_id' => $user->patient->id,
-                    'status' => 'Completed'
-                ],
-            )
-            ->count();
+            $completed_appointments = 0;
 
-            $canceled_appointments = $user
-            ->patient
-            ->appointments()
-            ->where(
-                [
-                    'patient_id' => $user->patient->id,
-                    'status' => 'Canceled'
-                ],
-            )
-            ->count();
+            $canceled_appointments = 0;
 
-            $transactions = $user
-            ->patient
-            ->transaction(
-                [
-                    'patient_id' => $user->patient->id,
-                ],
-            )
-            ->count();
+            $transactions = 0;
 
-            $contacts = $user
-            ->contact
-            ->count();
+            if ($patient != null) {
+
+                $appointments = $user
+                ->patient
+                ->appointments()
+                ->where(
+                    [
+                        'patient_id' => $user->patient->id,
+                        'status' => 'Active'
+                    ],
+                )
+                ->count();
+
+                $completed_appointments = $user
+                ->patient
+                ->appointments()
+                ->where(
+                    [
+                        'patient_id' => $user->patient->id,
+                        'status' => 'Completed'
+                    ],
+                )
+                ->count();
+
+                $canceled_appointments = $user
+                ->patient
+                ->appointments()
+                ->where(
+                    [
+                        'patient_id' => $user->patient->id,
+                        'status' => 'Canceled'
+                    ],
+                )
+                ->count();
+
+                $transactions = $user
+                ->patient
+                ->transaction(
+                    [
+                        'patient_id' => $user->patient->id,
+                    ],
+                )
+                ->count();
+            }
+
+            $contact = 0;
+
+            if ($contact != null) {
+
+                $contacts = $user
+                ->contact
+                ->count();
+            }
 
             $current_date = Carbon::now();
 

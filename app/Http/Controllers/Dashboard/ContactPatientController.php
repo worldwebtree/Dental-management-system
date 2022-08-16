@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ContactPatientController extends Controller
@@ -38,9 +39,42 @@ class ContactPatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'subject' => ['required', 'string'],
+            'message' => ['required', 'string'],
+        ]);
+        $user = Auth::user();
+
+        if ($user) {
+
+            $contact
+            ->create([
+                'user_id' => $user->id,
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'subject' => $request['subject'],
+                'message' => $request['message'],
+            ]);
+
+        }elseif (!$user) {
+
+            $contact
+            ->create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'subject' => $request['subject'],
+                'message' => $request['message'],
+            ]);
+
+        }
+
+        return redirect()
+        ->route('home')
+        ->with('created', 'Message has been send successfully!');
     }
 
     /**
