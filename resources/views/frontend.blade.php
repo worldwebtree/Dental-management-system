@@ -220,13 +220,13 @@
             <div class="row gx-5">
                 <div class="col-lg-6 py-5">
                     <div class="py-5">
-                        <h1 class="display-5 text-white mb-4">We Are A Certified and Award Winning Dental Clinic You Can Trust</h1>
+                        <h1 class="display-5 text-white mb-4">موږ یو تصدیق شوی او جایزه ګټونکی د غاښونو کلینیک یو چې تاسو باور کولی شئ</h1>
                         <p class="text-white mb-0">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
-                        <h1 class="text-white mb-4">Make Appointment</h1>
+                        <h1 class="text-white mb-4">ملاقات وکړئ</h1>
                         <form action="{{ route('make.appointment.store') }}" method="POST">
                             @csrf
                             <div class="row g-3">
@@ -268,7 +268,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit">ملاقات وکړئ</button>
                                 </div>
                             </div>
                         </form>
@@ -293,7 +293,7 @@
                 <div class="col-lg-7">
                     <div class="section-title mb-5">
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Services</h5>
-                        <h1 class="display-5 mb-0">We Offer The Best Quality Dental Services</h1>
+                        <h1 class="display-5 mb-0">موږ د غاښونو غوره کیفیت خدمتونه وړاندې کوو</h1>
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
