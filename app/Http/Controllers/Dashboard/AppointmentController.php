@@ -125,10 +125,15 @@ class AppointmentController extends Controller
             'appointment_date' => ['required', 'date'],
             'appointment_time' => ['required'],
             'status' => ['required', 'string'],
-            'dentist_id' => ['required'],
+            'dentist_id' => ['nullable'],
             'appointment_payment' => ['required', 'numeric'],
             'dentist_service' => ['required', 'string']
         ]);
+
+        if($request->user()->dentist == null)
+            return redirect()
+            ->route('appointments')
+            ->with('info', 'Please update Dentist profile before making an appointment');
 
         $User = $user->create([
             'name' => $request['name'],

@@ -244,7 +244,7 @@
                                     <select class="form-select bg-light border-0" name="dentist_id" style="height: 55px;">
                                         <option selected>Select Doctor</option>
                                         @foreach ($dentist as $den)
-                                            <option value="{{ $den->dentist['id'] }}">
+                                            <option value="{{ $den->dentist['id'] ?? ''}}">
                                                 {{ $den['name'] }}
                                             </option>
                                         @endforeach
@@ -353,7 +353,7 @@
     <div class="container-fluid py-5" id="contactSection">
         <div class="container">
             <div class="row g-5">
-                <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
+                <div class="col-xl-6 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
                     <div class="bg-light rounded h-100 p-5">
                         <div class="section-title">
                             <h5 class="position-relative d-inline-block text-primary text-uppercase">Contact Us</h5>
@@ -382,7 +382,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                <div class="col-xl-6 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
                     <form action="{{ route('contact.store') }}" method="POST">
                         <x-alerts/>
                         <x-error :errors="$errors" />
@@ -406,12 +406,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
-                </div>
             </div>
         </div>
     </div>
@@ -429,21 +423,24 @@
                     </div>
                 </div>
                 <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="position-relative rounded-top" style="z-index: 1;">
-                            <img class="img-fluid rounded-top w-100" src="{{ asset('assets/frontend/img/team-1.jpg') }}" alt="">
-                            <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                    @foreach ($dentist as $den)
+                        @if (!empty($den->dentist))
+                            <div class="team-item">
+                                <div class="position-relative rounded-top" style="z-index: 1;">
+                                    @if ($den->dentist->avatar != null)
+                                        <img class="img-fluid rounded-top w-100" src="{{ asset('storage/profileAvatars/'.$den->dentist->avatar) }}" alt="dentist_image">
+                                        @elseif ($den->dentist->avatar != null)
+                                        <img class="img-fluid rounded-top w-100" src="{{ asset('assets/images/user/1.jpg') }}" alt="dentist_image">
+                                    @endif
+                                </div>
+                                <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                                    <h4 class="mb-2">{{ $den->name ?? '' }}</h4>
+                                    <p class="text-primary mb-0">{{ $den->dentist->specialization ?? '' }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                            <h4 class="mb-2">Dr. John Doe</h4>
-                            <p class="text-primary mb-0">Implant Surgeon</p>
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
+
                 </div>
             </div>
         </div>

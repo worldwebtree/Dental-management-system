@@ -23,9 +23,9 @@ class TransactionController extends Controller
         ->with('patient')
         ->get();
 
-        $patient_transactions = 0;
+        $patient_transactions = [];
 
-        if ($user->role == "Patient")
+        if ($user->role == "Patient" && $user->patient != null)
             $patient_transactions = $user
             ->patient
             ->transaction(
