@@ -53,6 +53,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()
+        ->route('dashboard')
+        ->with('created', 'You are logged in! now first update your profile credentials');
     }
 }

@@ -33,7 +33,9 @@
                                     <tbody>
                                         @foreach ($dentists as $dentist)
                                             <tr>
-                                                <td scope="row">{{ $dentist->dentist['avatar'] ?? 'not added yet'  }}</td>
+                                                <td scope="row">
+                                                    <img src="{{ asset('storage/profileAvatars/'.$dentist->dentist['avatar'] ?? 'not added yet') }}" alt="dentist_avatar">
+                                                </td>
                                                 <td>{{ $dentist['name'] }}</td>
                                                 <td>{{ $dentist['email'] }}</td>
                                                 <td>{{ $dentist->dentist['phone'] ?? 'not added yet'   }}</td>

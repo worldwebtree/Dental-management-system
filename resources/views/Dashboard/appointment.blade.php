@@ -138,7 +138,7 @@
                                                             <label for="inputDentistName" class="form-label">Dentists</label>
                                                             <select class="form-control" name="dentist_id" id="inputDentistName">
                                                                 @foreach ($all_dentists as $dentists)
-                                                                    <option value="{{ $dentists->dentist->id }}">
+                                                                    <option value="{{ $dentists->dentist->id ?? ''}}">
                                                                         {{ $dentists->name }}
                                                                     </option>
                                                                 @endforeach
@@ -257,7 +257,7 @@
                                                             <label for="inputDentistName" class="form-label">Dentists</label>
                                                             <select class="form-control" name="dentist_id" id="inputDentistName">
                                                                 @foreach ($all_dentists as $dentists)
-                                                                    <option value="{{ $dentists->dentist->id }}">
+                                                                    <option value="{{ $dentists->dentist->id ?? ''}}">
                                                                         {{ $dentists->name }}
                                                                     </option>
                                                                 @endforeach
