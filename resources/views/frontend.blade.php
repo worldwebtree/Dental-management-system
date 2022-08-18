@@ -468,7 +468,7 @@
     <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px;">
         <div class="container pt-5">
             <div class="row g-5 pt-4">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6"> 
                     <h3 class="text-white mb-4">Quick Links</h3>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
