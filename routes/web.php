@@ -87,8 +87,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/appointments_get_appointment', 'get_appointment')
         ->name('appointments.get.appointment');
 
-        Route::get('/appointments_cancel/{id}', 'cancel')
+        Route::get('/appointments/cancel/{id}', 'cancel')
         ->name('appointments.cancel');
+
+        Route::get('/appointments/completed/{id}', 'completed')
+        ->name('appointments.completed');
 
         Route::get('/appointments_delete/{id}', 'destroy')
         ->name('appointments.delete');

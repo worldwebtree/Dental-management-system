@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
-use App\Models\Patient;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,10 +21,13 @@ class AppointmentController extends Controller
     public function index(Appointment $appointment, User $users)
     {
         $user = Auth::user();
+
         $dentists = $user->dentist;
+
         $patients = $user->patient;
 
         if (!empty($users->dentist()))
+
             $all_dentists = $users
             ->where('role', 'Dentist')
             ->with('dentist')
@@ -235,6 +237,27 @@ class AppointmentController extends Controller
         $appointment->update(
             [
                 'status' => 'Canceled',
+            ]
+        );
+
+        return redirect()
+        ->route('appointments')
+        ->with('success', 'Appointment status has been updated successfully!');
+    }
+
+            /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function completed($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+
+        $appointment->update(
+            [
+                'status' => 'Completed',
             ]
         );
 

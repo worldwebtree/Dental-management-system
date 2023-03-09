@@ -187,20 +187,38 @@
                                                     <td scope="row">{{ $appointment['patient-name'] }}</td>
                                                     <td>{{ $appointment['appointment-dateTime'] }}</td>
                                                     <td>{{ $appointment['dentist_service'] }}</td>
+
                                                     @if ($appointment['status'] == "Active")
+
                                                         <td class="text-yellow-500">{{ $appointment['status'] }}</td>
+
                                                         @elseif ($appointment['status'] == "Completed")
+
                                                         <td class="text-green-500">{{ $appointment['status'] }}</td>
+
                                                         @elseif ($appointment['status'] == "Canceled")
                                                         <td class="text-red-500">{{ $appointment['status'] }}</td>
+
                                                     @endif
+
                                                     <td>
-                                                        <a href="{{ route('appointments.cancel', $appointment['id']) }}" data-toggle="tooltip" data-placement="top" title="cancel">
+                                                        <a href="{{ route('appointments.cancel', $appointment['id']) }}"
+                                                            data-toggle="tooltip"
+                                                            data-placement="top"
+                                                            title="cancel">
                                                             <i class="fas fa-times fa-lg"></i>
                                                         </a>|
+
+                                                        <a href="{{ route('appointments.completed', $appointment['id']) }}"
+                                                            data-toggle="tooltip"
+                                                            data-placement="top"
+                                                            title="completed">
+                                                            <i class="fas fa-check fa-lg"></i>
+                                                        </a>|
+
                                                         <a href="{{ route('appointments.delete', $appointment['id']) }}"
-                                                        data-toggle="tooltip"
-                                                        data-title="Delete">
+                                                            data-toggle="tooltip"
+                                                            data-title="Delete">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
