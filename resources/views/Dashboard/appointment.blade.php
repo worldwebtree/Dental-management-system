@@ -1,15 +1,15 @@
 @php
     $services = [
-        'Complete exams, x-rays, and dental cleanings',
-        'Fillings, root canals, and extractions',
-        'Cosmetic dentistry, such as whitening, porcelain and composite veneers',
-        'Implants - placement and restoration',
-        'Crowns, bridges, full and partial dentures',
-        'Implants',
-        'Orthodontics',
-        'Oral appliances for control of sleep apnea',
-        'Preventive care, periodontal therapy, and nutritional counseling',
-        'Relaxation techniques using nitrous oxide sedation',
+        'Complete exams, xrays, and dental cleanings' => '5000',
+        'Fillings, root canals, and extractions' => '10000',
+        'Cosmetic dentistry, such as whitening, porcelain and composite veneers' => '6000',
+        'Implants placement and restoration' => '3000',
+        'Crowns, bridges, full and partial dentures' => '8000',
+        'Implants' => '20000',
+        'Orthodontics' => '15000',
+        'Oral appliances for control of sleep apnea' => '4000',
+        'Preventive care, periodontal therapy, and nutritional counseling' => '8000',
+        'Relaxation techniques using nitrous oxide sedation' => '30000',
     ];
 @endphp
 <x-app-layout>
@@ -268,8 +268,8 @@
                                                     <div class="d-flex">
                                                         <div class="col-6 mb-3">
                                                             <label for="inputAppointmentTimeDate" class="form-label">apointment datetime</label>
-                                                            <input type="date" class="form-control border-b-0" name="appointment_date" id="inputAppointmentTimeDate">
-                                                            <input type="time" class="form-control border-t-0" name="appointment_time" id="inputAppointmentTimeDate">
+                                                            <input type="date" class="form-control border-b-0" required name="appointment_date" id="inputAppointmentTimeDate">
+                                                            <input type="time" class="form-control border-t-0" required name="appointment_time" id="inputAppointmentTimeDate">
                                                         </div>
                                                         <div class=" col-6 mb-3">
                                                             <label for="inputDentistName" class="form-label">Dentists</label>
@@ -284,19 +284,14 @@
                                                     </div>
 
                                                     <div class="col-12 mb-3">
-                                                        <label for="inputDentistService" class="form-label">services</label>
+                                                        <label for="inputDentistService" class="form-label">services and prices</label>
                                                         <select class="form-control" name="dentist_service" id="inputDentistService">
-                                                            @foreach ($services as $service)
-                                                                <option value="{{ $service }}">
-                                                                    {{ $service }}
+                                                            @foreach ($services as $service => $price)
+                                                                <option value="{{ $service }} - {{ $price }}">
+                                                                    {{ $service }} - {{ $price }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
-
-                                                    <div class="col-12 mb-3">
-                                                        <label for="inputAppointmentPayment" class="form-label">appointment payment</label>
-                                                        <input type="number" class="form-control" name="appointment_payment" id="inputAppointmentPayment">
                                                     </div>
 
                                                     <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>

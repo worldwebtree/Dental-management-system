@@ -69,21 +69,39 @@ class ProfileController extends Controller
             'gender' => $request['gender'],
         ]);
 
-        $request
-        ->user()
-        ->dentist()
-        ->updateOrCreate(
-            ['user_id' => $request->user()->id],
-        [
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'country' => $request['country'],
-            'city' => $request['city'],
-            'age' => $request['age'],
-            'birthDate' => $request['dob'],
-            'specialization' => $request['specialization'],
-            'avatar' => $avatar_name,
-        ]);
+        if (! empty($request->user()->dentist())) {
+
+            $request
+            ->user()
+            ->dentist()
+            ->where('user_id', $request->user()->id)
+            ->update([
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'country' => $request['country'],
+                'city' => $request['city'],
+                'age' => $request['age'],
+                'birthDate' => $request['dob'],
+                'specialization' => $request['specialization'],
+                'avatar' => $avatar_name,
+            ]);
+
+        } elseif (empty($request->user()->dentist())) {
+            $request
+            ->user()
+            ->dentist()
+            ->create([
+                'user_id' => $request->user()->id,
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'country' => $request['country'],
+                'city' => $request['city'],
+                'age' => $request['age'],
+                'birthDate' => $request['dob'],
+                'specialization' => $request['specialization'],
+                'avatar' => $avatar_name,
+            ]);
+        }
 
         return redirect()
         ->route('profile')
@@ -112,7 +130,7 @@ class ProfileController extends Controller
 
         if (empty($request->hasFile('patientAvatar')) && $request['patientAvatar'] == null) {
 
-            $avatar_name = $request->user()->dentist->avatar;
+            $avatar_name = $request->user()->patient->avatar;
 
         } else {
 
@@ -130,21 +148,40 @@ class ProfileController extends Controller
             'gender' => $request['gender'],
         ]);
 
-        $request
-        ->user()
-        ->patient()
-        ->updateOrCreate(
-            ['user_id' => $request->user()->id],
-        [
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'country' => $request['country'],
-            'city' => $request['city'],
-            'age' => $request['age'],
-            'birthDate' => $request['dob'],
-            'occupation' => $request['Occupation'],
-            'avatar' => $avatar_name,
-        ]);
+        if (! empty($request->user()->patient())) {
+
+            $request
+            ->user()
+            ->patient()
+            ->where('user_id', $request->user()->id)
+            ->update([
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'country' => $request['country'],
+                'city' => $request['city'],
+                'age' => $request['age'],
+                'birthDate' => $request['dob'],
+                'occupation' => $request['Occupation'],
+                'avatar' => $avatar_name,
+            ]);
+
+        } elseif (empty($request->user()->patient())) {
+
+            $request
+            ->user()
+            ->patient()
+            ->create([
+                'user_id' => $request->user()->id,
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'country' => $request['country'],
+                'city' => $request['city'],
+                'age' => $request['age'],
+                'birthDate' => $request['dob'],
+                'occupation' => $request['Occupation'],
+                'avatar' => $avatar_name,
+            ]);
+        }
 
         return redirect()
         ->route('profile')

@@ -70,8 +70,9 @@ class AppointmentController extends Controller
             'appointment_time' => ['required'],
             'dentist_id' => ['required'],
             'dentist_service' => ['required', 'string'],
-            'appointment_payment' => ['required', 'string'],
         ]);
+
+        $service_and_price = explode("-", $request['dentist_service']);
 
         $user = $request->user();
 
@@ -85,7 +86,7 @@ class AppointmentController extends Controller
             'dentist_id' => $request['dentist_id'],
             'patient-name' => $user->name,
             'appointment-dateTime' => Carbon::parse($appointment_dateTime)->toDateTime(),
-            'dentist_service' => $request['dentist_service'],
+            'dentist_service' => $service_and_price[0],
             'status' => 'Active',
         ]);
 
@@ -95,7 +96,7 @@ class AppointmentController extends Controller
             [
                 'patient_id' => $appointments->patient_id,
                 'appointment_id' => $appointments->id,
-                'payment' => $request['appointment_payment'],
+                'payment' => $service_and_price[1],
             ]
         );
 

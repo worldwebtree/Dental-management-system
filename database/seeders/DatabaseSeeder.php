@@ -20,7 +20,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(2)->create();
+        User::factory(1)->create([
+            'name' => 'Dentist',
+            'email' => 'dentist@example.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+            'role' => 'Dentist',
+            'gender' => 'Male'
+        ]);
+
+        User::factory(1)->create([
+            'name' => 'Patient',
+            'email' => 'patient@example.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+            'role' => 'Patient',
+            'gender' => 'Male'
+        ]);
 
         Dentist::factory(1)->create([
             'user_id' => User::value('id'),
