@@ -12,16 +12,11 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
 
-    <!-- Pignose Calender -->
-    <link href="{{ asset('assets/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
-
-    <!-- Chartist -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/chartist/css/chartist.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css') }}">
-    <!-- Custom Stylesheet -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Css -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -29,15 +24,44 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        button,
-        [type='reset'],
-        [type='submit'] {
-        -webkit-appearance: button; /* 1 */
-        background-color: #7571f9; /* 2 */
-        background-image: none; /* 2 */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
         }
-        .table {
-            display: block;
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .gradient-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-2 {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+        }
+        .gradient-3 {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+        .gradient-4 {
+            background: linear-gradient(135deg, #5ee7df 0%, #b490d2 100%);
+        }
+        .table thead th {
+            background-color: #f1f3f5;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #dee2e6;
+        }
+        .btn-primary {
+            background-color: #7571f9;
+            border-color: #7571f9;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
         }
     </style>
 </head>

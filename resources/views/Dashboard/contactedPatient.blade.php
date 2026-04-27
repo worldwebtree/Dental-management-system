@@ -8,42 +8,42 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-xl-12">
-                    <div class="card">
-                        <div class="card-header text-uppercase">
-                            <h2>
-                                contacts
-                            </h2>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h4 class="m-0 fw-bold text-primary text-uppercase">Contact Messages</h4>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-striped table-inverse table-responsive">
-                                <thead class="thead-inverse text-uppercase">
-                                    <tr>
-                                        <th>name</th>
-                                        <th>email</th>
-                                        <th>subject</th>
-                                        <th>message</th>
-                                        <th>action</th>
-                                    </tr>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover m-0">
+                                    <thead class="bg-light text-uppercase small fw-bold">
+                                        <tr>
+                                            <th class="border-0">Name</th>
+                                            <th class="border-0">Email</th>
+                                            <th class="border-0">Subject</th>
+                                            <th class="border-0">Message</th>
+                                            <th class="border-0 text-center">Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($contacts as $contact)
                                             <tr>
-                                                <td scope="row">{{ $contact['name'] }}</td>
-                                                <td>{{ $contact['email'] }}</td>
-                                                <td>{{ $contact['subject'] }}</td>
-                                                <td>{{ $contact['message'] }}</td>
-                                                <td>
+                                                <td class="align-middle fw-medium">{{ $contact['name'] }}</td>
+                                                <td class="align-middle small text-muted">{{ $contact['email'] }}</td>
+                                                <td class="align-middle">{{ $contact['subject'] }}</td>
+                                                <td class="align-middle"><small>{{ $contact['message'] }}</small></td>
+                                                <td class="align-middle text-center">
                                                     <a href="{{ route('contacts.delete', $contact['id']) }}"
-                                                    data-toggle="tooltip"
-                                                    data-title="Delete">
-                                                        <i class="fas fa-trash"></i>
+                                                        class="btn btn-sm btn-outline-danger shadow-sm"
+                                                        data-toggle="tooltip"
+                                                        title="Delete Contact">
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-                            </table>
-
+                                </table>
+                            </div>
                         </div>
                     </div>
                     </div>

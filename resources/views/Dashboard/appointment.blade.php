@@ -25,208 +25,172 @@
                     <div class="col-lg-12 col-xl-12">
                         <div class="card">
                             <x-error :errors="$errors" />
-                            <div class="card-header text-uppercase flex justify-between">
-                                <h2>
-                                    appointments
-                                </h2>
+                            <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+                                <h4 class="m-0 fw-bold text-primary text-uppercase">Appointments</h4>
 
                                 <!-- Button trigger modal -->
-                                <div class="add-patient-btn">
-                                    <button type="button" data-toggle="modal" data-target="#modelId" class="btn-lg bg-blue-500 hover:bg-blue-700 text-white">
-                                        Add Appointment
-                                    </button>
-                                </div>
-
                                 <!-- Add Patient Modal -->
                                 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Add Appointment Details</h5>
-                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content border-0 shadow-lg">
+                                            <div class="modal-header bg-primary text-white border-0">
+                                                <h5 class="modal-title fw-bold">Add Appointment Details</h5>
+                                                <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="{{ route('appointments.store') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
+                                            <div class="modal-body p-4">
+                                                <form action="{{ route('appointments.store') }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
-
-                                                    <div class="d-flex mb-3">
-                                                        <div class="col-6">
-                                                            <label for="inputName" class="form-label">name</label>
-                                                            <input type="text" name="name" value="" class="form-control" id="inputName">
+                                                    <div class="row g-3">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Patient Name</label>
+                                                            <input type="text" name="name" class="form-control rounded-3" placeholder="Enter patient name" required>
                                                         </div>
-
-                                                        <div class="col-6">
-                                                            <label for="inputEmail" class="form-label">email</label>
-                                                            <input type="email" name="email" class="form-control" value="" id="inputEmail">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Email Address</label>
+                                                            <input type="email" name="email" class="form-control rounded-3" placeholder="Enter email" required>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex mb-3">
-                                                        <div class="col-6">
-                                                            <label for="inputGender" class="form-label">gender</label>
-                                                            <select class="form-control" name="gender" id="inputGender">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Gender</label>
+                                                            <select class="form-select rounded-3" name="gender" required>
                                                                 <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
-                                                                <option value="other">other</option>
+                                                                <option value="Other">Other</option>
                                                             </select>
                                                         </div>
-
-                                                        <div class="col-6">
-                                                            <label for="inputPhone" class="form-label">phone</label>
-                                                            <input type="number" name="phone" value="" class="form-control" id="inputPhone">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Phone Number</label>
+                                                            <input type="number" name="phone" class="form-control rounded-3" placeholder="Enter phone" required>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label for="inputAddress" class="form-label">address</label>
-                                                        <input type="text" name="address" class="form-control" value="" id="inputAddress">
-                                                    </div>
-
-                                                    <div class="d-flex mb-3">
-                                                        <div class="col-6">
-                                                            <label for="inputCountry" class="form-label">country</label>
-                                                            <input type="text" name="country" class="form-control" value="" id="inputCountry">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Address</label>
+                                                            <input type="text" name="address" class="form-control rounded-3" placeholder="Enter address" required>
                                                         </div>
-
-                                                        <div class="col-6">
-                                                            <label for="inputCity" class="form-label">city</label>
-                                                            <input type="text" name="city" class="form-control" value="" id="inputCity">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Country</label>
+                                                            <input type="text" name="country" class="form-control rounded-3" placeholder="Enter country" required>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex mb-3">
-                                                        <div class="col-6">
-                                                            <label for="inputAge" class="form-label">age</label>
-                                                            <input type="number" name="age" class="form-control" max="100" value="" id="inputAge">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">City</label>
+                                                            <input type="text" name="city" class="form-control rounded-3" placeholder="Enter city" required>
                                                         </div>
-
-                                                        <div class="col-6">
-                                                            <label for="inputDob" class="form-label">date of birth</label>
-                                                            <input type="date" name="dob" class="form-control" value="" id="inputDob">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Age</label>
+                                                            <input type="number" name="age" class="form-control rounded-3" placeholder="Enter age" max="100" required>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex">
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputOccupation" class="form-label">occupation</label>
-                                                            <input type="text" class="form-control" name="Occupation" id="inputOccupation">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Occupation</label>
+                                                            <input type="text" name="Occupation" class="form-control rounded-3" placeholder="Enter occupation" required>
                                                         </div>
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputPassword" class="form-label">password</label>
-                                                            <input type="password" class="form-control" name="password" id="inputPassword">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Password (for Patient)</label>
+                                                            <input type="password" name="password" class="form-control rounded-3" placeholder="Max 8 chars" maxlength="8" required>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex">
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputAppointmentTimeDate" class="form-label">apointment datetime</label>
-                                                            <input type="date" class="form-control border-b-0" name="appointment_date" id="inputAppointmentTimeDate">
-                                                            <input type="time" class="form-control border-t-0" name="appointment_time" id="inputAppointmentTimeDate">
-                                                        </div>
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputAppointmentStatus" class="form-label">apointment status</label>
-                                                            <select class="form-control" name="status" id="inputAppointmentStatus">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Appointment Status</label>
+                                                            <select class="form-select rounded-3" name="status" required>
                                                                 <option value="Active">Active</option>
                                                                 <option value="Completed">Completed</option>
                                                                 <option value="Canceled">Canceled</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex">
-                                                        <div class=" col-6 mb-3">
-                                                            <label for="inputDentistName" class="form-label">Dentists</label>
-                                                            <select class="form-control" name="dentist_id" id="inputDentistName">
-                                                                @foreach ($all_dentists as $dentists)
-                                                                    <option value="{{ $dentists->dentist->id ?? ''}}">
-                                                                        {{ $dentists->name }}
-                                                                    </option>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Date of Birth</label>
+                                                            <input type="date" name="dob" class="form-control rounded-3" required>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Appointment Date & Time</label>
+                                                            <div class="input-group">
+                                                                <input type="date" class="form-control rounded-start-3" name="appointment_date" required>
+                                                                <input type="time" class="form-control rounded-end-3" name="appointment_time" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Dentist</label>
+                                                            <select class="form-select rounded-3" name="dentist_id" required>
+                                                                @foreach ($all_dentists as $dentist)
+                                                                    <option value="{{ $dentist->dentist->id ?? ''}}">{{ $dentist->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
-
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputAppointmentPayment" class="form-label">appointment payment</label>
-                                                            <input type="number" class="form-control" name="appointment_payment" id="inputAppointmentPayment">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label class="form-label fw-semibold">Payment Amount</label>
+                                                            <input type="number" name="appointment_payment" class="form-control rounded-3" placeholder="Enter payment" required>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <label class="form-label fw-semibold">Service</label>
+                                                            <select class="form-select rounded-3" name="dentist_service" required>
+                                                                @foreach ($services as $service)
+                                                                    <option value="{{ $service }}">{{ $service }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-12 mb-3">
-                                                        <label for="inputDentistService" class="form-label">services</label>
-                                                        <select class="form-control" name="dentist_service" id="inputDentistService">
-                                                            @foreach ($services as $service)
-                                                                <option value="{{ $service }}">
-                                                                    {{ $service }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                    <div class="text-end mt-4">
+                                                        <button type="button" class="btn btn-light px-4 me-2" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary px-4 shadow-sm">Save Appointment</button>
                                                     </div>
-
-                                                    <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn-lg bg-blue-500 hover:bg-blue-700 text-white float-right">Add</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-striped table-inverse table-responsive">
-                                    <thead class="thead-inverse text-uppercase">
-                                        <tr>
-                                            <th>patient name</th>
-                                            <th>appointment datetime</th>
-                                            <th>service</th>
-                                            <th>status</th>
-                                            <th>actions</th>
-                                        </tr>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover m-0">
+                                        <thead class="bg-light text-uppercase small fw-bold">
+                                            <tr>
+                                                <th class="border-0">Patient Name</th>
+                                                <th class="border-0">Date & Time</th>
+                                                <th class="border-0">Service</th>
+                                                <th class="border-0">Status</th>
+                                                <th class="border-0 text-center">Actions</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($appointments as $appointment)
                                                 <tr>
-                                                    <td scope="row">{{ $appointment['patient-name'] }}</td>
-                                                    <td>{{ $appointment['appointment-dateTime'] }}</td>
-                                                    <td>{{ $appointment['dentist_service'] }}</td>
+                                                    <td class="align-middle fw-medium">{{ $appointment['patient-name'] }}</td>
+                                                    <td class="align-middle">{{ $appointment['appointment-dateTime'] }}</td>
+                                                    <td class="align-middle">{{ $appointment['dentist_service'] }}</td>
 
-                                                    @if ($appointment['status'] == "Active")
-
-                                                        <td class="text-yellow-500">{{ $appointment['status'] }}</td>
-
+                                                    <td class="align-middle">
+                                                        @if ($appointment['status'] == "Active")
+                                                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm">Active</span>
                                                         @elseif ($appointment['status'] == "Completed")
-
-                                                        <td class="text-green-500">{{ $appointment['status'] }}</td>
-
+                                                            <span class="badge bg-success px-3 py-2 rounded-pill shadow-sm">Completed</span>
                                                         @elseif ($appointment['status'] == "Canceled")
-                                                        <td class="text-red-500">{{ $appointment['status'] }}</td>
+                                                            <span class="badge bg-danger px-3 py-2 rounded-pill shadow-sm">Canceled</span>
+                                                        @endif
+                                                    </td>
 
-                                                    @endif
-
-                                                    <td>
-                                                        <a href="{{ route('appointments.cancel', $appointment['id']) }}"
-                                                            data-toggle="tooltip"
-                                                            data-placement="top"
-                                                            title="cancel">
-                                                            <i class="fas fa-times fa-lg"></i>
-                                                        </a>|
-
-                                                        <a href="{{ route('appointments.completed', $appointment['id']) }}"
-                                                            data-toggle="tooltip"
-                                                            data-placement="top"
-                                                            title="completed">
-                                                            <i class="fas fa-check fa-lg"></i>
-                                                        </a>|
-
-                                                        <a href="{{ route('appointments.delete', $appointment['id']) }}"
-                                                            data-toggle="tooltip"
-                                                            data-title="Delete">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
+                                                    <td class="align-middle text-center">
+                                                        <div class="btn-group shadow-sm">
+                                                            <a href="{{ route('appointments.cancel', $appointment['id']) }}"
+                                                                class="btn btn-sm btn-outline-danger"
+                                                                data-toggle="tooltip"
+                                                                title="Cancel">
+                                                                <i class="fas fa-times"></i>
+                                                            </a>
+                                                            <a href="{{ route('appointments.completed', $appointment['id']) }}"
+                                                                class="btn btn-sm btn-outline-success"
+                                                                data-toggle="tooltip"
+                                                                title="Mark Completed">
+                                                                <i class="fas fa-check"></i>
+                                                            </a>
+                                                            <a href="{{ route('appointments.delete', $appointment['id']) }}"
+                                                                class="btn btn-sm btn-outline-dark"
+                                                                data-toggle="tooltip"
+                                                                title="Delete">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                </table>
-
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -237,99 +201,97 @@
             @elseif (auth()->user()->role == "Patient")
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 col-xl-12">
-                        <div class="card">
+                    <div class="col-lg-12">
+                        <div class="card shadow-sm border-0">
                             <x-error :errors="$errors" />
                             <x-alerts/>
-                            <div class="card-header text-uppercase flex justify-between">
-                                <h2>
-                                    appointments
-                                </h2>
+                            <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+                                <h4 class="m-0 fw-bold text-primary text-uppercase">My Appointments</h4>
+                                <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-primary shadow-sm">
+                                    <i class="fas fa-calendar-plus me-2"></i> Get Appointment
+                                </button>
+                            </div>
 
-                                <!-- Button trigger modal -->
-                                <div class="add-patient-btn">
-                                    <button type="button" data-toggle="modal" data-target="#modelId" class="btn-lg bg-blue-500 hover:bg-blue-700 text-white">
-                                        Get Appointment
-                                    </button>
-                                </div>
-
-                                <!-- Add Patient Modal -->
-                                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Get Appointment</h5>
-                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="{{ route('appointments.get.appointment') }}" method="POST" enctype="multipart/form-data" class="form-profile text-capitalize">
-                                                    @csrf
-
-                                                    <div class="d-flex">
-                                                        <div class="col-6 mb-3">
-                                                            <label for="inputAppointmentTimeDate" class="form-label">apointment datetime</label>
-                                                            <input type="date" class="form-control border-b-0" required name="appointment_date" id="inputAppointmentTimeDate">
-                                                            <input type="time" class="form-control border-t-0" required name="appointment_time" id="inputAppointmentTimeDate">
-                                                        </div>
-                                                        <div class=" col-6 mb-3">
-                                                            <label for="inputDentistName" class="form-label">Dentists</label>
-                                                            <select class="form-control" name="dentist_id" id="inputDentistName">
-                                                                @foreach ($all_dentists as $dentists)
-                                                                    <option value="{{ $dentists->dentist->id ?? ''}}">
-                                                                        {{ $dentists->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
+                            <!-- Get Appointment Modal -->
+                            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-md" role="document">
+                                    <div class="modal-content border-0 shadow-lg">
+                                        <div class="modal-header bg-primary text-white border-0">
+                                            <h5 class="modal-title fw-bold">Book New Appointment</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-4">
+                                            <form action="{{ route('appointments.get.appointment') }}" method="POST">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Date & Time</label>
+                                                    <div class="input-group">
+                                                        <input type="date" class="form-control" name="appointment_date" required>
+                                                        <input type="time" class="form-control" name="appointment_time" required>
                                                     </div>
-
-                                                    <div class="col-12 mb-3">
-                                                        <label for="inputDentistService" class="form-label">services and prices</label>
-                                                        <select class="form-control" name="dentist_service" id="inputDentistService">
-                                                            @foreach ($services as $service => $price)
-                                                                <option value="{{ $service }} - {{ $price }}">
-                                                                    {{ $service }} - {{ $price }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-
-                                                    <button type="button" class="btn-lg bg-red-500 hover:bg-red-700 text-white float-right ml-3" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn-lg bg-blue-500 hover:bg-blue-700 text-white float-right">Add</button>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Select Dentist</label>
+                                                    <select class="form-select" name="dentist_id" required>
+                                                        @foreach ($all_dentists as $dentist)
+                                                            <option value="{{ $dentist->dentist->id ?? ''}}">{{ $dentist->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Service & Price</label>
+                                                    <select class="form-select" name="dentist_service" required>
+                                                        @foreach ($services as $service => $price)
+                                                            <option value="{{ $service }} - {{ $price }}">{{ $service }} ({{ $price }} PKR)</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="text-end mt-4">
+                                                    <button type="button" class="btn btn-light px-4 me-2" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary px-4 shadow-sm">Confirm Booking</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-striped table-inverse table-responsive">
-                                    <thead class="thead-inverse text-uppercase">
-                                        <tr>
-                                            <th>dentist name</th>
-                                            <th>appointment datetime</th>
-                                            <th>service</th>
-                                            <th>status</th>
-                                        </tr>
+
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover m-0">
+                                        <thead class="bg-light text-uppercase small fw-bold">
+                                            <tr>
+                                                <th class="border-0">Dentist Name</th>
+                                                <th class="border-0">Date & Time</th>
+                                                <th class="border-0">Service</th>
+                                                <th class="border-0 text-center">Status</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($appointments as $appointment)
                                                 <tr>
-                                                    <td scope="row">{{ $appointment->dentist->user['name'] }}</td>
-                                                    <td>{{ $appointment['appointment-dateTime'] }}</td>
-                                                    <td>{{ $appointment['dentist_service'] }}</td>
-                                                    @if ($appointment['status'] == "Active")
-                                                        <td class="text-yellow-500">{{ $appointment['status'] }}</td>
+                                                    <td class="align-middle fw-medium">{{ $appointment->dentist->user['name'] }}</td>
+                                                    <td class="align-middle">{{ $appointment['appointment-dateTime'] }}</td>
+                                                    <td class="align-middle">{{ $appointment['dentist_service'] }}</td>
+                                                    <td class="align-middle text-center">
+                                                        @if ($appointment['status'] == "Active")
+                                                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm">Active</span>
                                                         @elseif ($appointment['status'] == "Completed")
-                                                        <td class="text-green-500">{{ $appointment['status'] }}</td>
+                                                            <span class="badge bg-success px-3 py-2 rounded-pill shadow-sm">Completed</span>
                                                         @elseif ($appointment['status'] == "Canceled")
-                                                        <td class="text-red-500">{{ $appointment['status'] }}</td>
-                                                    @endif
+                                                            <span class="badge bg-danger px-3 py-2 rounded-pill shadow-sm">Canceled</span>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
-                                </table>
+                                    </table>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                         </div>
                         </div>
                     </div>

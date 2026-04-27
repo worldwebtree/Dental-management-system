@@ -29,6 +29,11 @@
                         <i class="fas fa-address-book"></i><span class="nav-text pl-3">Contacted Patients</span>
                     </a>
                 </li>
+                <li>
+                    <a class="" href="{{ route('plan.bookings') }}">
+                        <i class="fas fa-tags"></i><span class="nav-text pl-3">Plan Bookings</span>
+                    </a>
+                </li>
             </ul>
 
             @elseif (auth()->user()->role == "Patient")

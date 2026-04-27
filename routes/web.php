@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\SearchController;
 use App\Http\Controllers\Dashboard\TransactionController;
 use App\Http\Controllers\FrontEnd\FrontendController;
 use App\Http\Controllers\FrontEnd\MakeAppointmentController;
+use App\Http\Controllers\PlanBookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,10 @@ Route::controller(MakeAppointmentController::class)->group(function () {
     Route::post('/make-appointment', 'store')
     ->name('make.appointment.store');
 
+});
+
+Route::controller(PlanBookingController::class)->group(function () {
+    Route::post('/plan-booking', 'store')->name('plan.booking.store');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -131,6 +136,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/search', 'store')
         ->name('search.store');
 
+    });
+
+    Route::controller(PlanBookingController::class)->group(function () {
+        Route::get('/plan-bookings', 'index')->name('plan.bookings');
+        Route::get('/plan-bookings-delete/{id}', 'delete')->name('plan.bookings.delete');
     });
 });
 
