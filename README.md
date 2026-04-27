@@ -12,22 +12,22 @@ If you want to use this system or add more specialized features, please contact 
 
 ---
 
-## 🌟 What's New in the Latest Version?
+## What's New in the Latest Version?
 
-### 🚀 Technical Upgrades
+### Technical Upgrades
 - **Framework**: Upgraded to **Laravel 11.x** for peak performance and security.
 - **Packages**: Fully updated dependencies (Composer & NPM) for 2026 standards.
 - **Localization**: 100% translated into **English** (frontend and backend).
 - **Performance**: Removed heavy loading animations and optimized scroll behaviors for instant access.
 
-### 🎨 Stunning UI/UX Redesign
+### Stunning UI/UX Redesign
 - **Indigo Theme**: A premium, professional aesthetic across the entire application.
 - **Modern Typography**: Integrated **Outfit** and **Inter** Google Fonts.
 - **Responsive Layout**: Pixel-perfect design for Mobile, Tablet, and Desktop.
 - **Glassmorphism**: Blurred sticky navigation and modern modal designs.
 - **Custom Assets**: Enhanced with new sections for **Emergency Care**, **Pricing Plans**, and **Testimonials**.
 
-### 💼 Admin & Management Features
+### Admin & Management Features
 - **Redesigned Dashboard**: Vibrant gradient cards and intuitive statistics overview.
 - **Pricing Plan Booking**: A new end-to-end flow allowing patients to subscribe to dental packages directly from the site.
 - **Enhanced Tables**: Bordered, hoverable, and high-contrast management tables for Patients, Appointments, and Transactions.
@@ -35,7 +35,7 @@ If you want to use this system or add more specialized features, please contact 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Laravel 11 (PHP 8.2+)
 - **Frontend**: Bootstrap 5, Vanilla CSS, jQuery
@@ -45,7 +45,7 @@ If you want to use this system or add more specialized features, please contact 
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1. **Clone the Project**:
    ```bash
@@ -76,7 +76,7 @@ If you want to use this system or add more specialized features, please contact 
 
 ---
 
-## 🏢 About WorldWebTree
+## About WorldWebTree
 
 **WorldWebTree.com** is a leading global software development and digital transformation agency. We specialize in building cutting-edge web applications, enterprise ERP systems, and AI-driven solutions that help businesses scale in the digital era.
 
@@ -95,7 +95,7 @@ If you want to use this system or add more specialized features, please contact 
 
 ---
 
-## 📞 Get in Touch
+## Get in Touch
 
 If you are a student, a clinic owner, or a developer looking to expand this project, we are here to help.
 
