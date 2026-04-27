@@ -763,7 +763,7 @@
                     <p class="mb-0">&copy; {{ date('Y') }} <a class="text-white fw-bold text-decoration-none" href="#">Huzaifa Dental Clinic</a>. All Rights Reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 small opacity-50">Designed for Dental Excellence</p>
+                    <p class="mb-0 small opacity-50">Design and develop by <a href="https://worldwebtree.com" class="text-white text-decoration-none fw-bold" target="_blank">WorldWebTree.com</a></p>
                 </div>
             </div>
         </div>

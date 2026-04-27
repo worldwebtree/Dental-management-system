@@ -1,5 +1,5 @@
 <div class="footer">
     <div class="copyright">
-        <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+        <p>Copyright &copy; Design and develop by <a href="https://worldwebtree.com" target="_blank">WorldWebTree.com</a> {{ date('Y') }}</p>
     </div>
 </div>
