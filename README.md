@@ -2,14 +2,17 @@
 
 A comprehensive web-based solution for managing dental clinic operations, built with **Laravel 11**, **Tailwind CSS**, and **Vite**. This system streamlines appointment scheduling, patient record management, and clinic administrative tasks.
 
-## 🚀 Key Features
+> [!NOTE]
+> This project was originally developed as a **Final Year Project (FYP)** for a Computer Science student by the **WorldWebTree** team in **2022**. It has since been maintained and updated to the latest technology standards, including **Laravel 11**.
 
-### 🌐 Frontend (Public)
+## Key Features
+
+### Frontend (Public)
 - **Responsive Homepage**: Modern design showcasing clinic services.
 - **Online Appointment Booking**: Patients can easily request appointments online.
 - **Contact Form**: Direct communication channel for patient inquiries.
 
-### 📊 Dashboard (Admin/Staff)
+### Dashboard (Admin/Staff)
 - **Overview Analytics**: Visual representation of clinic performance and upcoming appointments.
 - **Appointment Management**:
   - View, create, and search appointments.
@@ -26,7 +29,7 @@ A comprehensive web-based solution for managing dental clinic operations, built 
 - **Transaction History**: Track clinic transactions and financial records.
 - **Advanced Search**: Quickly find patients, appointments, or staff members.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: [Laravel 11](https://laravel.com/)
 - **Frontend**: [Tailwind CSS](https://tailwindcss.com/), [Vite](https://vitejs.dev/)
@@ -35,7 +38,7 @@ A comprehensive web-based solution for managing dental clinic operations, built 
 - **Notifications**: [SweetAlert](https://realrashid.github.io/sweet-alert/)
 - **Email**: Support for SMTP/Mailgun
 
-## ⚙️ Installation
+## Installation
 
 Follow these steps to set up the project locally:
 
@@ -89,26 +92,39 @@ php artisan serve
 ```
 Visit `http://localhost:8000` in your browser.
 
-### 🔑 Default Credentials
+### Default Credentials
 If you run the seeders, you can use these accounts:
 - **Admin/Dentist**: `dentist@example.com` / `password`
 - **Patient**: `patient@example.com` / `password`
 
-## 📂 Project Structure
+## Project Structure
 
 - `app/Http/Controllers/Dashboard`: Contains logic for administrative features.
 - `app/Http/Controllers/FrontEnd`: Handles public-facing pages and appointment requests.
 - `resources/views`: Blade templates styled with Tailwind CSS.
 - `routes/web.php`: Defines the web routes for the application.
 
-## 🛡️ Security
+## About WorldWebTree
 
-If you discover any security-related issues, please use the contact form on the website or the developers email or report via the repository issues.
+[WorldWebTree](https://worldwebtree.com) is a premier software and web development company based in Peshawar, Pakistan. We specialize in delivering high-performance, scalable solutions tailored to meet complex business challenges.
 
-Company Website : [WorldWebTree](https://worldwebtree.com/contact)
-Developer Email: [umar@worldwebtree.com]
+### Our Expertise:
+- **Custom Software Development**: Architecting robust systems for diverse industries.
+- **Mobile App Development**: Crafting intuitive iOS and Android applications.
+- **UI/UX Design**: Prioritizing user experience through modern, aesthetic, and functional designs.
+- **AI & Data Solutions**: Leveraging automation and analytics to drive business insights.
+- **Enterprise Solutions (ERP/CRM)**: Building comprehensive management systems for streamlined operations.
 
+If you are looking to add more features to this project or want to build a custom solution from scratch, please feel free to reach out to us or our lead developer.
 
-## 📄 License
+**Contact Us:**
+- **Company Website**: [worldwebtree.com](https://worldwebtree.com/contact)
+- **Lead Developer Email**: [umar@worldwebtree.com](mailto:umar@worldwebtree.com)
+
+## Security
+
+If you discover any security-related issues, please use the contact form on the website or email our development team directly.
+
+## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
